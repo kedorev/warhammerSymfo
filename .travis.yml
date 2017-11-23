@@ -4,12 +4,11 @@ php:
   - 7.1
 
 before_script:
-  - php -v
   - composer install --no-interaction
 
 script:
   - vendor/bin/behat -v
-  - vendor/bin/phploc ./src
+  - vendor/bin/phploc src
 
 notifications:
   email:
