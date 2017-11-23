@@ -16,9 +16,6 @@ cache:
 php:
   - 7.1
 
-# Define an environment variable
-env:
-  - SYMFONY_VERSION="3.3.*" DB=mysql
 
 # Update composer
 before-install:
@@ -32,11 +29,8 @@ install:
   - wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
 
 script:
-  - vendor/bin/phpunit
-  - vendor/bin/behat
-  - vendor/bin/phploc src
-  - vendor/bin/phpcs ./src
-  
+  - sh deploy.sh
+
 
 notifications:
   email:
