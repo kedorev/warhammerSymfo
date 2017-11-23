@@ -1,15 +1,34 @@
+# Project language
 language: php
 
-php:
-  - 7.1
+# Allows use container-based infrastructure
+sudo: false
 
+# Start mysql service
+services:
+  - mysql
+
+# Cache composer packages so "composer install" is faster
 cache:
   directories:
     - $HOME/.composer/cache/files
 
+php:
+  - 7.1
 
+# Define an environment variable
+env:
+  - SYMFONY_VERSION="3.3.*" DB=mysql
+
+# Update composer
 before-install:
+  - composer self-update
+
+# Install composer dependencies,
+# Create database, schema and fixtures
+install:
   - composer install
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
 
 
 script:
