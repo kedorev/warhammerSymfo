@@ -1,16 +1,5 @@
 language: php
 
-
-# Allows use container-based infrastructure
-sudo: false
-
-# Start mysql service
-services:
-  - mysql
-
-env:
-  - SYMFONY_VERSION="3.3.*" DB=mysql
-
 php:
   - 7.1
 
@@ -20,14 +9,8 @@ cache:
 
 
 before-install:
-  - composer self-update
-
-install:
   - composer install
-  - cp app/config/parameters.yml.dist app/config/parameters.yml
-  - php bin/console doctrine:database:create --env=test
-  - php bin/console doctrine:schema:create --env=test
-  - php bin/console doctrine:fixtures:load -n --env=test
+
 
 script:
   - phpunit
