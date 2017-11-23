@@ -29,7 +29,9 @@ before-install:
 install:
   - composer install
   - cp app/config/parameters.yml.dist app/config/parameters.yml
-
+  - wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
+  - chmod +x rocketeer.phar
+  - mv rocketeer.phar /usr/local/bin/rocketeer
 
 script:
   - vendor/bin/phpunit
