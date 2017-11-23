@@ -3,13 +3,13 @@
 vendor/bin/phpunit
 if [ $? -eq 0 ]
 then
-    vendor/bin/behat
+    vendor/bin/phploc src
     if [ $? -eq 0 ]
     then
-        vendor/bin/phploc src
+        #vendor/bin/behat
         if [ $? -eq 0 ]
         then
-            vendor/bin/phpcs ./src
+            #vendor/bin/phpcs ./src
             if [ $? -eq 0 ]
             then
                 php rocketeer.phar deploy
