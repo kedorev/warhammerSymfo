@@ -1,0 +1,23 @@
+{% extends "@MainApp/base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-1"> </div>
+        <div class="col-md-10">
+            {% for key, factionsData in factions %}
+                <ul class="list-group">
+                    <H2>{{ key }}</H2>
+                        {% for faction in factionsData %}
+                            <a href="/faction/{{ faction.name }}" class="list-group-item">
+                                {{ faction.name }}
+                            </a>
+                        {% endfor %}
+                </ul>
+            {% endfor %}
+            <ul class="list-group">
+
+            </ul>
+        </div>
+        <div class="col-md-1"> </div>
+    </div>
+{% endblock %}

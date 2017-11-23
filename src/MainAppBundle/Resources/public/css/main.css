@@ -1,0 +1,119 @@
+.model
+{
+    margin-bottom: 10px;
+    border-bottom: dotted black thin;
+}
+
+.glyphiconBigger
+{
+    font-size: 35px;
+}
+
+.card-container
+{
+    margin-bottom: 15px;
+    display: inline-flex;
+    justify-content: space-between;
+
+    flex: 0 5 20%;
+    flex-wrap: wrap;
+    border-bottom: 2px groove lightgrey;
+}
+
+.card
+{
+    border: 2px groove lightgrey;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 220px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card-container:after {
+    content: "";
+    flex: auto;
+}
+
+.card-new
+{
+
+}
+
+.flex-one-row
+{
+    flex: 0 1 100%;
+}
+.container_flex
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_flex_row
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.listBarCode
+{
+    width: 200px;
+}
+
+.barCode
+{
+    padding-top: 4px;
+    margin: auto;
+}
+
+.barCode input[type="text"] {
+    width: 180px;
+}
+
+.item_flex_column
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.item_list_information
+{
+    width: 250px;
+    height:50px;
+    margin: auto;
+}
+
+.inputWithoutBorder
+{
+    border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.list-group-horizontal .list-group-item {
+    display: inline-block;
+}
+.list-group-horizontal .list-group-item {
+    margin-bottom: 0;
+    margin-left:-4px;
+    margin-right: 0;
+}
+.list-group-horizontal .list-group-item:first-child {
+    border-top-right-radius:0;
+    border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child {
+    border-top-right-radius:4px;
+    border-bottom-left-radius:0;
+}

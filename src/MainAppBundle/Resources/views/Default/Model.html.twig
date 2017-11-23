@@ -1,0 +1,14 @@
+{% extends "@MainApp/base.html.twig" %}
+
+{% block title %}Model{% endblock %}
+
+{% block body %}
+
+        {% for model in models %}
+
+            {% include '@MainApp/Partial/_model.html.twig' %}
+
+        {% endfor %}
+
+    </table>
+{% endblock %}

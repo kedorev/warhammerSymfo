@@ -1,0 +1,228 @@
+{% extends "@MainApp/base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            {% if liste == null %}
+                La liste demandee n'existe pas.
+            {% else %}
+
+                <div class="container_flex">
+                    <div class="item_flex_column"><h2><input class="inputWithoutBorder" id="listName" value="{{ liste.name }}"></h2></div>
+                    <div class="item_flex_column container_flex_row">
+                        <div class="item_list_information">
+                            <h4>{{ liste.totalPoint }} / <input id="pointLimit" type="number" class="" data-listId="{{ liste.id }}" value="{{ liste.pointsLimit }}"></h4>
+                        </div>
+                        <div class="item_list_information">
+                            <input id="reglementary" type="checkbox"> Reglementaire
+                        </div>
+                        <div class="item_list_information">
+                            <label for="artefactNumber">Artefact number : </label><SELECT id="artefactNumber" data-listId="{{ liste.id }}" name="artefactNumber" size="1">
+
+                                <OPTION {% if( liste.artefactNumber == 0) %} selected {% endif %}>0
+                                <OPTION {% if( liste.artefactNumber == 1) %} selected {% endif %}>1
+                                <OPTION {% if( liste.artefactNumber == 2) %} selected {% endif %}>2
+                                <OPTION {% if( liste.artefactNumber == 3) %} selected {% endif %}>3
+                            </SELECT>
+                        </div>
+                        <div class="item_list_information">
+                            Command point : <span id="commandPointValue">{{ liste.getAvailableCommandPoint }}</span> / {{ liste.getCommandPoint }}
+                        </div>
+                    </div>
+                </div>
+
+
+                {{ dump(liste) }}
+
+
+                <div class="panel-group" id="accordion">
+                    {% set formationNum = 1 %}
+                    {% for formation in liste.formationsListe %}
+                    {{ dump(formation) }}
+                        <div class="panel panel-default">
+                            <div class="panel-heading collapse-focus" data-focus="{{ formationNum }}">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        <div class="list-group list-group-horizontal">
+                                            <span class="list-group-item">{{ formation.formationModel.name }}</span>
+
+                                            {% for requirement in formation.formationModel.formationRequirements %}
+                                                <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
+                                            {% endfor %}
+                                        </div>
+                                    </a>
+                                    {#<span id="resizeF{{formationNum}}" class="glyphicon glyphicon-resize-full"></span>#}
+                                </h4>
+                            </div>
+                            <div id="collapseF{{ formationNum }}" class="panel-collapse collapse in" style="display: none;">
+                                <div class="panel-body row">
+                                    {% for squadEntity in formation.SquadsEntity %}
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="flex-one-row">
+                                                {{ squadEntity.squadModel.name }}
+                                                {{ squadEntity.totalPoint }} pts
+                                            </div>
+                                            <div class="card-container">
+                                            {% for models in squadEntity.ModelsEntity %}
+
+                                                    <div class="card">
+                                                        <div class="card-block">
+                                                                <img class="flex-one-row" src="{{ asset('img/profil.png') }}">
+                                                                {{ models.getModelTemplate.name }}
+                                                                {{ models.totalPoint }} pts
+                                                                <ul>
+
+                                                                    {% for weapon in models.weaponsEntity %}
+                                                                        <li>
+                                                                                {{ weapon.weaponModel.name }}
+
+                                                                        </li>
+                                                                    {% endfor %}
+
+                                                                </ul>
+                                                        </div>
+                                                        <div class="card-footer">
+
+                                                            <div class="icon pull-right">
+                                                                <div class="editModel" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"><i class="fa fa-cog fa-fw fa-2x" aria-hidden="true"></i></div>
+                                                                <div class="removeModel" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    {#{% set modelTemplate = models.getModelTemplate %}
+                                                    <div class="dataModels" id="model{{ models.id }}">
+                                                        <div class="row">
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-10">
+                                                                <div class="model">
+                                                                    <table class="table table-bordered row">
+                                                                        <tr>
+                                                                            <th class="col-md-4">
+                                                                                Nom
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Touche CaC
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Touche Tir
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Force
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Endurance
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                PdV
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Attaque
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Commandement
+                                                                            </th>
+                                                                            <th class="col-md-1 text-center">
+                                                                                Sauvegarde
+                                                                            </th>
+                                                                        </tr>
+                                                                        {% for profil in models.getProfilEntity %}
+                                                                            <tr>
+                                                                                <td class="">
+                                                                                    {{ modelTemplate.name }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.BS }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.WS }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.strength }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.toughness }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.wound }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.attack }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.leadership }}
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    {{ profil.save }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                    </table>
+
+                                                                    {% set weapons = modelTemplate.weapons %}
+                                                                    {% include "@MainApp/Partial/_weapon.html.twig"  %}
+
+                                                                    {% set abilities = modelTemplate.abilities %}
+                                                                    <table class="table table-bordered row">
+                                                                        <th colspan="2"> <H3>Competence</H3></th>
+                                                                        {% for ability in abilities %}
+                                                                            <tr>
+                                                                                <td class="col-md-2">
+                                                                                    {{ ability.name }}
+                                                                                </td>
+                                                                                <td class="col-md-10">
+                                                                                    {{ ability.description }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                    </table>
+
+                                                                    {% set keywords = modelTemplate.keysWord %}
+                                                                    <H3>Mots clefs</H3>
+                                                                    {% for keyword in keywords %}
+                                                                        {{ keyword.name }},
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-1"></div>
+                                                        </div>
+                                                    </div>#}
+
+                                            {% endfor %}
+                                                {% if squadEntity.nbModels < squadEntity.squadModel.max %}
+                                                {% for j in range (squadEntity.nbModels,squadEntity.squadModel.max -1) %}
+                                                    <div class="card">
+                                                        <a class="addModel list-group-item" data-listId="{{liste.id}}" data-squadId="{{ squadEntity.id }}">
+                                                        <img src="{{ asset('img/add.png') }}"></a>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                    <div class="col-lg-12 col-md-12">
+                                        <a class="addSquad" data-listId="{{liste.id}}" data-formationId = "{{ formation.id }}">add squad</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% set formationNum = formationNum +1 %}
+                    {% endfor %}
+                        <div>
+                            <div class="panel panel-default">
+                                <div id="addFormation" class="panel-heading addFormation" data-listid="{{liste.id}}">
+                                    Add formation <span class="glyphicon glyphicon-plus glyphiconBigger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+
+        <div class="col-md-1"></div>
+    </div>
+
+{% endblock %}

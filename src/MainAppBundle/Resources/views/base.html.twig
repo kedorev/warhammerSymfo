@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block header %}
+        {% embed "@MainApp/Partial/_header.html.twig" %}
+        {% endembed %}
+    {% endblock %}
+    </head>
+    <body>
+        <script>var baseUrl = '{{ app.request.getSchemeAndHttpHost() }}';</script>
+        {% block navbar %}
+            {% embed "@MainApp/Partial/_navbar.html.twig" %}
+            {% endembed %}
+        {% endblock %}
+        {% block body %}
+
+        {% endblock %}
+        {% block footer %}
+            {% embed "@MainApp/Partial/_footer.html.twig" %}
+            {% endembed %}
+        {% endblock %}
+    </body>
+</html>

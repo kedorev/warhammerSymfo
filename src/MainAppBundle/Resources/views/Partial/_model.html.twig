@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="model">
+        <table class="table table-bordered row">
+            <tr>
+                <th class="col-md-4">
+                    Nom
+                </th>
+                <th class="col-md-1 text-center">
+                    Touche CaC
+                </th>
+                <th class="col-md-1 text-center">
+                    Touche Tir
+                </th>
+                <th class="col-md-1 text-center">
+                    Force
+                </th>
+                <th class="col-md-1 text-center">
+                    Endurance
+                </th>
+                <th class="col-md-1 text-center">
+                    PdV
+                </th>
+                <th class="col-md-1 text-center">
+                    Attaque
+                </th>
+                <th class="col-md-1 text-center">
+                    Commandement
+                </th>
+                <th class="col-md-1 text-center">
+                    Sauvegarde
+                </th>
+            </tr>
+        {% for profil in model.profil %}
+                <tr>
+                    <td class="">
+                        {{ model.name }}
+                    </td>
+                    <td class="text-center">
+                        {{ profil.BS }}
+                    </td>
+                    <td class="text-center">
+                        {{ profil.WS }}
+                    </td>
+                    <td class="text-center">
+                        {{ profil.strength }}
+                    </td>
+                    <td class="text-center">
+                        {{ model.toughness }}
+                    </td>
+                    <td class="text-center">
+                         {{ model.wound }}
+                    </td>
+                    <td class="text-center">
+                        {{ profil.attack }}
+                    </td>
+                    <td class="text-center">
+                        {{ model.leadership }}
+                    </td>
+                    <td class="text-center">
+                        {{ model.save }}
+                    </td>
+                </tr>
+        {% endfor %}
+        </table>
+
+        {% set weaponsModel = model.weapons %}
+            {% for weapon in weaponsModel.weapon %}
+        {% include "@MainApp/Partial/_weapon.html.twig"  %}
+            {% endfor %}
+        {% set abilities = model.abilities %}
+        <table class="table table-bordered row">
+           <th colspan="2"> <H3>Competence</H3></th>
+        {% for ability in abilities %}
+            <tr>
+                <td class="col-md-2">
+                    {{ ability.name }}
+                </td>
+                <td class="col-md-10">
+                    {{ ability.description }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        {% set keywords = model.keysWord %}
+        <H3>Mots clefs</H3>
+        {% for keyword in keywords %}
+            {{ keyword.name }},
+        {% endfor %}
+    </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

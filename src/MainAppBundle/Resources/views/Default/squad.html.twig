@@ -1,0 +1,14 @@
+{% extends "@MainApp/base.html.twig" %}
+
+{% block title %}Model{% endblock %}
+
+{% block body %}
+    {% dump squads %}
+
+        {% for squad in squads %}
+
+            {% include '@MainApp/Partial/_squad.html.twig' %}
+
+        {% endfor %}
+
+{% endblock %}

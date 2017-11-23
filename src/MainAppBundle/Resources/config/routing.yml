@@ -1,0 +1,9 @@
+main_app_homepage:
+    path:     /
+    defaults: { _controller: MainAppBundle:Default:index }
+
+
+
+main_app_login:
+    path:     /login_1
+    defaults: { _controller: MainAppBundle:User:login }
