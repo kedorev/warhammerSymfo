@@ -13,7 +13,7 @@ before-install:
 
 
 script:
-  - phpunit
+  - vendor/bin/phpunit
   - vendor/bin/behat
   - vendor/bin/phploc src
 
