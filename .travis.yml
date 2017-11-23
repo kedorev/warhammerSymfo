@@ -7,7 +7,8 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - vendor/bin/behat -v
+  - phpunit
+  - vendor/bin/behat
   - vendor/bin/phploc src
 
 notifications:
