@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 vendor/bin/phpunit
-if [ $? == 0 ]
+if [ $? -eq 0 ]
 then
     vendor/bin/behat
-    if [ $? == 0 ]
+    if [ $? -eq 0 ]
     then
         vendor/bin/phploc src
-        if [ $? == 0 ]
+        if [ $? -eq 0 ]
         then
             vendor/bin/phpcs ./src
-            if [ $? == 0 ]
+            if [ $? -eq 0 ]
             then
                 php rocketeer.phar deploy
             fi
