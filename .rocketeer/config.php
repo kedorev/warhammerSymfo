@@ -40,7 +40,7 @@ return [
         'production' => [
             'host'      => '37.59.56.179',
             'username'  => 'root',
-            'password'  => '',
+            'password'  => 'Kycb4Nek4z1b',
             'key'       => '',
             'keyphrase' => '',
             'agent'     => '',
