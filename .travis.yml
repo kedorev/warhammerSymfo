@@ -35,6 +35,7 @@ script:
   - vendor/bin/phpunit
   - vendor/bin/behat
   - vendor/bin/phploc src
+  - vendor/bin/phpcs ./src
 
 notifications:
   email:
