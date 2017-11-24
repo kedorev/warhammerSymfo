@@ -34,6 +34,9 @@ class weaponEntity
      */
     private $weaponModel;
 
+
+
+
     /**
      * Get id
      *

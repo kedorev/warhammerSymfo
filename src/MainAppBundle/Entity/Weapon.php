@@ -4,30 +4,15 @@ namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Weapon
  *
  * @ORM\Table(name="weapon")
  * @ORM\Entity(repositoryClass="MainAppBundle\Repository\WeaponRepository")
  */
-class Weapon
+class Weapon extends Equipment
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
     /**
      * @var int
      *
@@ -45,7 +30,7 @@ class Weapon
     /**
      * @var int
      *
-     * @ORM\Column(name="Dommage", type="integer")
+     * @ORM\Column(name="Dommage", type="string")
      */
     private $dommage;
 
@@ -70,12 +55,6 @@ class Weapon
      */
     private $weaponLists;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="price", type="integer")
-     */
-    private $price;
 
     /**
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Weapons_Model",mappedBy="weapon")
@@ -87,46 +66,6 @@ class Weapon
      */
     private $weaponsEntity;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="rule", type="text")
-     */
-    private $rule;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Weapon
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set reach
@@ -290,30 +229,6 @@ class Weapon
     }
 
     /**
-     * Set price
-     *
-     * @param integer $price
-     *
-     * @return Weapon
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return integer
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * Set weaponSwitch
      *
      * @param \MainAppBundle\Entity\weaponList $weaponSwitch
@@ -335,30 +250,6 @@ class Weapon
     public function getWeaponSwitch()
     {
         return $this->weaponSwitch;
-    }
-
-    /**
-     * Set rule
-     *
-     * @param string $rule
-     *
-     * @return Weapon
-     */
-    public function setRule($rule)
-    {
-        $this->rule = $rule;
-
-        return $this;
-    }
-
-    /**
-     * Get rule
-     *
-     * @return string
-     */
-    public function getRule()
-    {
-        return $this->rule;
     }
 
     public function __toString():string

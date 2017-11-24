@@ -1,13 +1,64 @@
 /**
  * Created by lerm on 17/07/2017.
  */
-jQuery(document).ready(function($) {
+jQuery(document).ready(function($)
+{
+
+    var arrayDeferred = [];
     $("#submitDataList").click(function()
     {
         validateListData();
     });
 
 
+    $(document).on('change', '#pointLimit', function()
+    {
+        arrayDeferred.push($.ajax({
+            url: Routing.generate('main_app_updateList',"",true),
+            data: {
+                listId: $(this).attr('data-listId'),
+                method: "updatePointLimit",
+                value: $(this).val()
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            type: 'POST'
+        }));
+    });
+
+    $(document).on('change', '#listName', function()
+    {
+        arrayDeferred.push($.ajax({
+            url: Routing.generate('main_app_updateList',"",true),
+            data: {
+                listId: $(this).attr('data-listId'),
+                method: "updateName",
+                value: $(this).val()
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            type: 'POST'
+        }));
+    });
+
+    $(document).on('change', '#artefactNumber', function()
+    {
+        arrayDeferred.push($.ajax({
+            url: Routing.generate('main_app_updateList',"",true),
+            data: {
+                listId: $(this).attr('data-listId'),
+                method: "updateArtefactNumber",
+                value: $(this).val()
+            },
+            success: function(data) {
+                console.log(data);
+                $("#commandPointValue").html(data);
+            },
+            type: 'POST'
+        }));
+    });
 
 
     $(".addFormation").click(function(){

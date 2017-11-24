@@ -110,6 +110,11 @@ class Models
      */
     private $weapons;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Equipment")
+     */
+    private $equipements;
+
 
     /**
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\ModelEntity",mappedBy="modelTemplate")
@@ -591,5 +596,39 @@ class Models
     public function getWeapons()
     {
         return $this->weapons;
+    }
+
+    /**
+     * Add equipement
+     *
+     * @param \MainAppBundle\Entity\Equipment $equipement
+     *
+     * @return Models
+     */
+    public function addEquipement(\MainAppBundle\Entity\Equipment $equipement)
+    {
+        $this->equipements[] = $equipement;
+
+        return $this;
+    }
+
+    /**
+     * Remove equipement
+     *
+     * @param \MainAppBundle\Entity\Equipment $equipement
+     */
+    public function removeEquipement(\MainAppBundle\Entity\Equipment $equipement)
+    {
+        $this->equipements->removeElement($equipement);
+    }
+
+    /**
+     * Get equipements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEquipements()
+    {
+        return $this->equipements;
     }
 }

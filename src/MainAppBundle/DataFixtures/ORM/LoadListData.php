@@ -26,7 +26,9 @@ class LoadListData extends AbstractFixture implements OrderedFixtureInterface
                 "artefact" => 0,
                 "formation" => array(
                     '0' => 'PatrouilleA',
-                )
+                ),
+                "visibility" => 'Only me',
+                "owner" => "user-admin"
 
             ),
         );
@@ -36,7 +38,9 @@ class LoadListData extends AbstractFixture implements OrderedFixtureInterface
             $liste = new Liste();
             $liste->setName($factionData["name"]);
             $liste->setPointsLimit($factionData["points"]);
-            $liste->setArtefactNumber($factionData["points"]);
+            $liste->setArtefactNumber($factionData["artefact"]);
+            $liste->setOwner($this->getReference($factionData["owner"]));
+            $liste->setVisibility($this->getReference($factionData["visibility"]));
             foreach ($factionData["formation"] as $formationEntity )
             {
                 $liste->addFormationsListe($this->getReference($formationEntity));

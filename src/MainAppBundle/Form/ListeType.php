@@ -18,7 +18,8 @@ class ListeType extends AbstractType
     {
         $builder
             ->add('name',       TextType::class)
-            ->add('pointsLimit',      IntegerType::class);
+            ->add('pointsLimit',      IntegerType::class)
+            ->add('visibility');
     }
     
     /**

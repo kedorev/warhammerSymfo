@@ -21,22 +21,34 @@ class LoadFormationRequirementData extends AbstractFixture implements OrderedFix
     {
         $FormationsRequirementsData = array(
             "0" => array(
-                "min" => '3',
-                'max' => '6',
-                'type' => 'Troupe',
-                'formation' => 'Brigade',
+                "min" => '2',
+                'max' => '3',
+                'type' => 'HQ',
+                'formation' => 'Bataillon',
             ),
             "1" => array(
-                "min" => '0',
-                'max' => '3',
-                'type' => 'Elite',
-                'formation' => 'Brigade',
+                "min" => '3',
+                'max' => '6',
+                'type' => 'Troups',
+                'formation' => 'Bataillon',
             ),
             "2" => array(
                 "min" => '0',
                 'max' => '3',
-                'type' => 'Soutient',
-                'formation' => 'Brigade',
+                'type' => 'Elites',
+                'formation' => 'Bataillon',
+            ),
+            "3" => array(
+                "min" => '0',
+                'max' => '3',
+                'type' => 'Fast Attack',
+                'formation' => 'Bataillon',
+            ),
+            "4" => array(
+                "min" => '0',
+                'max' => '3',
+                'type' => 'Heavy Support',
+                'formation' => 'Bataillon',
             ),
         );
 

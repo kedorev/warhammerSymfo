@@ -24,7 +24,7 @@ class LoadWeaponData extends AbstractFixture implements OrderedFixtureInterface
             '0' => array(
                 'name' => "Fusil a impulsion",
                 'AP' => 0,
-                'dommage' => 1,
+                'dommage' => "1",
                 'reach' => 30,
                 'S' => 5,
                 'type' => "tir rapide",
@@ -34,10 +34,30 @@ class LoadWeaponData extends AbstractFixture implements OrderedFixtureInterface
             '1' => array(
                 'name' => "Fusil a plasma",
                 'AP' => -1,
-                'dommage' => 1,
+                'dommage' => "1",
                 'reach' => 24,
                 'S' => 6,
                 'type' => "tir rapide",
+                'price' => 11,
+                'rules' => ""
+            ),
+            '2' => array(
+                'name' => "Eclateur a fusion",
+                'AP' => -3,
+                'dommage' => "D6",
+                'reach' => 18,
+                'S' => 8,
+                'type' => "Assaut 1",
+                'price' => 11,
+                'rules' => "2 des si a moins de la moitie"
+            ),
+            '3' => array(
+                'name' => "Canon a induction",
+                'AP' => 0,
+                'dommage' => "1",
+                'reach' => 18,
+                'S' => 5,
+                'type' => "Assaut 4",
                 'price' => 11,
                 'rules' => ""
             ),

@@ -21,7 +21,7 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
         $squadsData = array(
             '0' => array(
                 'name' => 'XV8 crisis',
-                'type' => 'Elite',
+                'type' => 'Elites',
                 'requirement' => array(
                     '0' => 'crisis_shashui_into_crisis',
                     '1' => 'crisis_shavre_into_crisis',
@@ -31,7 +31,7 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
             ),
             '1' => array(
                 'name' => 'Strike team',
-                'type' => 'Troupe',
+                'type' => 'Troups',
                 'requirement' => array(
                     '0' => 'fire_warrior_into_strike_team',
                 ),

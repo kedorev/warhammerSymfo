@@ -31,6 +31,12 @@ class SquadType
     private $name;
 
     /**
+     * @var string
+     * @ORM\Column(name="img_url", type="string", length=255)
+     */
+    private $image;
+
+    /**
      * @var array(squads)
      *
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Squad", mappedBy="type")
@@ -158,5 +164,29 @@ class SquadType
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return SquadType
+     */
+    public function setImage(?string $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
     }
 }
