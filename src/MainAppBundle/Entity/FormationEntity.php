@@ -50,13 +50,6 @@ class FormationEntity
     private $formationModel;
 
     /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction")
-     */
-    private $faction;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -206,28 +199,4 @@ class FormationEntity
     }
 
     
-
-    /**
-     * Set faction
-     *
-     * @param \MainAppBundle\Entity\Faction $faction
-     *
-     * @return FormationEntity
-     */
-    public function setFaction(\MainAppBundle\Entity\Faction $faction = null)
-    {
-        $this->faction = $faction;
-
-        return $this;
-    }
-
-    /**
-     * Get faction
-     *
-     * @return \MainAppBundle\Entity\Faction
-     */
-    public function getFaction()
-    {
-        return $this->faction;
-    }
 }

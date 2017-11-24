@@ -6,12 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FormationEntityControllerTest extends WebTestCase
 {
-
-    public function testCompleteScenario()
-    {
-        return true;
-    }
-
     /*
     public function testCompleteScenario()
     {

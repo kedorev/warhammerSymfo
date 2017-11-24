@@ -7,52 +7,42 @@
             {% if liste == null %}
                 La liste demandee n'existe pas.
             {% else %}
+                {{ dump(liste) }}
+                <h3>{{ liste.name }}</h3>
+                <h4>{{ liste.totalPoint }} / {{ liste.pointsLimit }}</h4>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label>Points : </label><input type="number" class="" value="{{ liste.pointsLimit }}">
+                    </div>
+                    <div class="form-group">
 
-                <div class="container_flex">
-                    <div class="item_flex_column"><h2><input class="inputWithoutBorder" id="listName" value="{{ liste.name }}"></h2></div>
-                    <div class="item_flex_column container_flex_row">
-                        <div class="item_list_information">
-                            <h4>{{ liste.totalPoint }} / <input id="pointLimit" type="number" class="" data-listId="{{ liste.id }}" value="{{ liste.pointsLimit }}"></h4>
-                        </div>
-                        <div class="item_list_information">
-                            <input id="reglementary" type="checkbox"> Reglementaire
-                        </div>
-                        <div class="item_list_information">
-                            <label for="artefactNumber">Artefact number : </label><SELECT id="artefactNumber" data-listId="{{ liste.id }}" name="artefactNumber" size="1">
-
-                                <OPTION {% if( liste.artefactNumber == 0) %} selected {% endif %}>0
-                                <OPTION {% if( liste.artefactNumber == 1) %} selected {% endif %}>1
-                                <OPTION {% if( liste.artefactNumber == 2) %} selected {% endif %}>2
-                                <OPTION {% if( liste.artefactNumber == 3) %} selected {% endif %}>3
-                            </SELECT>
-                        </div>
-                        <div class="item_list_information">
-                            Command point : <span id="commandPointValue">{{ liste.getAvailableCommandPoint }}</span> / {{ liste.getCommandPoint }}
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Reglementaire
+                            </label>
                         </div>
                     </div>
-                </div>
-
-
-                {{ dump(liste) }}
-
-
+                    <div class="form-group">
+                        <label for="artefactNumber">Artefact number : </label><SELECT id="artefactNumber" name="artefactNumber" size="1">
+                            <OPTION>0
+                            <OPTION>1
+                            <OPTION>2
+                            <OPTION>3
+                        </SELECT>
+                    </div>
+                </form>
+                Command point : <span id="command point">{{ liste.getCommandPoint }}</span>
                 <div class="panel-group" id="accordion">
                     {% set formationNum = 1 %}
                     {% for formation in liste.formationsListe %}
-                    {{ dump(formation) }}
                         <div class="panel panel-default">
                             <div class="panel-heading collapse-focus" data-focus="{{ formationNum }}">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                        <div class="list-group list-group-horizontal">
-                                            <span class="list-group-item">{{ formation.formationModel.name }}</span>
-
-                                            {% for requirement in formation.formationModel.formationRequirements %}
-                                                <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
-                                            {% endfor %}
-                                        </div>
+                                        {{ formation.formationModel.name }}
+                                        {{ dump(formation.isValide) }}
                                     </a>
-                                    {#<span id="resizeF{{formationNum}}" class="glyphicon glyphicon-resize-full"></span>#}
+                                    <span id="resizeF{{formationNum}}" class="glyphicon glyphicon-resize-full"></span>
                                 </h4>
                             </div>
                             <div id="collapseF{{ formationNum }}" class="panel-collapse collapse in" style="display: none;">

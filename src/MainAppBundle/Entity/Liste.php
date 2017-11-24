@@ -3,8 +3,6 @@
 namespace MainAppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,12 +22,6 @@ class Liste
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Visibility")
-     */
-    private $visibility;
 
     /**
      * @var int
@@ -83,7 +75,6 @@ class Liste
     public function __construct()
     {
         $this->SquadsEntity = new ArrayCollection();
-        $this->artefacts = new ArrayCollection();
     }
 
 
@@ -104,7 +95,7 @@ class Liste
      *
      * @return Liste
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -116,7 +107,7 @@ class Liste
      *
      * @return string
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
@@ -128,7 +119,7 @@ class Liste
      *
      * @return Liste
      */
-    public function setOwner($owner = null)
+    public function setOwner(\MainAppBundle\Entity\User $owner = null)
     {
         $this->owner = $owner;
 
@@ -140,7 +131,7 @@ class Liste
      *
      * @return \MainAppBundle\Entity\User
      */
-    public function getOwner(): User
+    public function getOwner()
     {
         return $this->owner;
     }
@@ -188,7 +179,7 @@ class Liste
      *
      * @return Liste
      */
-    public function setPointsLimit(int $pointsLimit)
+    public function setPointsLimit($pointsLimit)
     {
         $this->pointsLimit = $pointsLimit;
 
@@ -246,7 +237,7 @@ class Liste
      *
      * @return Liste
      */
-    public function setArtefactNumber(int $artefactNumber)
+    public function setArtefactNumber($artefactNumber)
     {
         $this->artefactNumber = $artefactNumber;
 
@@ -258,7 +249,7 @@ class Liste
      *
      * @return integer
      */
-    public function getArtefactNumber(): int
+    public function getArtefactNumber()
     {
         return $this->artefactNumber;
     }
@@ -310,9 +301,9 @@ class Liste
     }
 
 
-    public function getCommandPoint() :int
+    public function getCommandPoint()
     {
-        $commandPoint = 3;
+        $commandPoint = 0;
         foreach($this->getFormationsListe() as $formation)
         {
             $commandPoint = $commandPoint + $formation->getCommandPoint();
@@ -320,24 +311,6 @@ class Liste
         return $commandPoint;
     }
 
-
-    public function getAvailableCommandPoint(): int
-    {
-        $nbArtefact = $this->getArtefactNumber();
-        if($nbArtefact ==  0 || $nbArtefact ==  1 )
-        {
-            return $this->getCommandPoint();
-        }
-        elseif ($nbArtefact == 2)
-        {
-            return $this->getCommandPoint() -1;
-        }
-        elseif ($nbArtefact == 3)
-        {
-            return $this->getCommandPoint() -3;
-        }
-        throw new \Exception("Wrong artefact number");
-    }
 
     public function isValid()
     {
@@ -347,29 +320,5 @@ class Liste
         }
 
         return true;
-    }
-
-    /**
-     * Set visibility
-     *
-     * @param \MainAppBundle\Entity\Visibility $visibility
-     *
-     * @return Liste
-     */
-    public function setVisibility(\MainAppBundle\Entity\Visibility $visibility = null)
-    {
-        $this->visibility = $visibility;
-
-        return $this;
-    }
-
-    /**
-     * Get visibility
-     *
-     * @return \MainAppBundle\Entity\Visibility
-     */
-    public function getVisibility()
-    {
-        return $this->visibility;
     }
 }

@@ -20,50 +20,18 @@ class LoadSquadTypeData extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $modelsData = array(
-            "0" => array(
-                "name"=>"HQ",
-                "img" => "img/QG.png"
-            ),
-            "1" => array(
-                "name"=>"Troups",
-                "img" => ""
-            ),
-            "2" => array(
-                "name"=>"Elites",
-                "img" => ""
-            ),
-            "3" => array(
-                "name"=>"Fast Attack",
-                "img" => ""
-            ),
-            "4" => array(
-                "name"=>"Heavy Support",
-                "img" => ""
-            ),
-            "5" => array(
-                "name"=>"Dedicated Transport",
-                "img" => ""
-            ),
-            "6" => array(
-                "name"=>"Flyer",
-                "img" => ""
-            ),
-            "7" => array(
-                "name"=>"Fortification",
-                "img" => ""
-            ),
-            "8" => array(
-                "name"=>"Lord of war",
-                "img" => ""
-            ),
+            "Elite",
+            'Attaque Rapide',
+            'QG',
+            'Soutient',
+            'Troupe'
         );
 
 
         foreach($modelsData as $modelData)
         {
             $squadtype = new SquadType();
-            $squadtype->setName($modelData['name']);
-            $squadtype->setImage($modelData['img']);
+            $squadtype->setName($modelData);
 
             $manager->persist($squadtype);
             $manager->flush();

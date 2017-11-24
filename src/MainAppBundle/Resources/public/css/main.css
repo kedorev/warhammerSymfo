@@ -46,74 +46,7 @@
 {
     flex: 0 1 100%;
 }
-.container_flex
+
+.flex-model-row
 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.container_flex_row
-{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.listBarCode
-{
-    width: 200px;
-}
-
-.barCode
-{
-    padding-top: 4px;
-    margin: auto;
-}
-
-.barCode input[type="text"] {
-    width: 180px;
-}
-
-.item_flex_column
-{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.item_list_information
-{
-    width: 250px;
-    height:50px;
-    margin: auto;
-}
-
-.inputWithoutBorder
-{
-    border: none;
-}
-
-textarea:focus, input:focus{
-    outline: none;
-}
-
-.list-group-horizontal .list-group-item {
-    display: inline-block;
-}
-.list-group-horizontal .list-group-item {
-    margin-bottom: 0;
-    margin-left:-4px;
-    margin-right: 0;
-}
-.list-group-horizontal .list-group-item:first-child {
-    border-top-right-radius:0;
-    border-bottom-left-radius:4px;
-}
-.list-group-horizontal .list-group-item:last-child {
-    border-top-right-radius:4px;
-    border-bottom-left-radius:0;
 }

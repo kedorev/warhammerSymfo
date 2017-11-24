@@ -7,12 +7,10 @@ use MainAppBundle\Entity\FormationEntity;
 use MainAppBundle\Entity\Liste;
 use MainAppBundle\Form\ListeType;
 use MainAppBundle\Form\FormationEntityType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use MainAppBundle\Entity\Models;
@@ -177,41 +175,6 @@ class DefaultController extends Controller
         $list = $repository->findAll();
 
         return $this->render('@MainApp/Liste/allList.html.twig', array('listArray' => $list));
-    }
-
-    /**
-     * AJAX route
-     *
-     * @Route("/list/update",name="main_app_updateList", options={"expose"=true})
-     * @Method({"POST"})
-     */
-    public function listUpdateAction(Request $request)
-    {
-        $listId = $request->get('listId');
-        if(isset($listId) && $listId != null)
-        {
-            $em = $this->getDoctrine()->getManager();
-            $list = $em->getRepository(Liste::class)->findOneById($listId);
-            $method = $request->get('method');
-            $value = $request->get('value');
-            if($method == "updatePointLimit" && isset($value))
-            {
-                $list->setPointsLimit(intval($value));
-            }
-            elseif($method == "updateArtefactNumber" && isset($value))
-            {
-                $list->setArtefactNumber(intval($value));
-                echo $list->getAvailableCommandPoint();
-            }
-            elseif($method == "updateName" && isset($value))
-            {
-                $list->setName($value);
-            }
-
-            $em->flush();
-        }
-
-        return new Response();
     }
 
 }

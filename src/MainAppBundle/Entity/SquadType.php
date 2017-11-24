@@ -23,18 +23,12 @@ class SquadType
 
 
     /**
-     * @var string
+     * @var int
      *
      * @ORM\Column(name="name", type="string", length=255)
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $name;
-
-    /**
-     * @var string
-     * @ORM\Column(name="img_url", type="string", length=255)
-     */
-    private $image;
 
     /**
      * @var array(squads)
@@ -164,29 +158,5 @@ class SquadType
     public function __toString()
     {
         return $this->getName();
-    }
-
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return SquadType
-     */
-    public function setImage(?string $image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage(): ?string
-    {
-        return $this->image;
     }
 }

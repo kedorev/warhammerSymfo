@@ -86,7 +86,6 @@ class weaponList
     public function addWeapon(\MainAppBundle\Entity\Weapon $weapon)
     {
         $this->weapons[] = $weapon;
-        $weapon->addWeaponList($this);
 
         return $this;
     }

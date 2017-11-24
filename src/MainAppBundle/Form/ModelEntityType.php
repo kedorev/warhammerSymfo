@@ -3,10 +3,9 @@
 namespace MainAppBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use MainAppBundle\Entity\weaponEntity;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use MainAppBundle\Entity\Models;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,10 +31,7 @@ class ModelEntityType extends AbstractType
         {
             $builder->remove('profilEntity');
             $builder->remove('modelTemplate');
-            $builder->add('weaponsEntity', CollectionType::class, array(
-                'entry_type' => weaponEntityType::class,
-                'allow_add' => true
-            ));
+            $builder->add('weaponsEntity');
         }
         $builder->remove('squadEntity');
 
