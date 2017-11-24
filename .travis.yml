@@ -24,6 +24,7 @@ before-install:
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
+  - composer dumpautoload
   - composer install
   - cp app/config/parameters.yml.dist app/config/parameters.yml
   - wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
