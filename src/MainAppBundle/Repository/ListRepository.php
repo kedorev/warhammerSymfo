@@ -10,4 +10,31 @@ namespace MainAppBundle\Repository;
  */
 class ListRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllListByFaction(int $factionId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('l');
+        $query->from("MainAppBundle:Liste",'l');
+        $query->innerJoin('l.formationsListe','f');
+        $query->innerJoin('l.visibility','v');
+        $query->where("f.faction = :faction");
+        $query->andWhere('v.id = 4');
+        $query->setParameter("faction",$factionId);
+        return $query->getQuery()->getResult();
+    }
+
+    public function getAllListByUser(int $userId)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQueryBuilder();
+        $query->select('l');
+        $query->from("MainAppBundle:Liste",'l');
+        $query->innerJoin('l.owner','u');
+        $query->andWhere('u.id = :id');
+        $query->setParameter("id",$userId);
+        return $query->getQuery()->getResult();
+    }
+
+
 }

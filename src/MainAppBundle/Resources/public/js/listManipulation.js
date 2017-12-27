@@ -128,6 +128,12 @@ jQuery(document).ready(function($)
         $('body').append(form);
         form.submit();
     });
+
+    $(".choiceList").click(function(){
+        var url = baseUrl+"/list/"+$(this).attr("data-listId");
+
+        window.location = url;
+    });
 });
 
 function validateListData()

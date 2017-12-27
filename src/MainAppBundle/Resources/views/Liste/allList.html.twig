@@ -1,8 +1,29 @@
 {% extends "@MainApp/base.html.twig" %}
 
 {% block body %}
-    {% for liste in listArray  %}
-        <a class="choiceList" href="{{ path('main_app_listShow', {'id': liste.id}) }}" ><h3>{{ liste.name }}</h3></a>
-
-    {% endfor %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <td>
+                    Nom
+                </td>
+                <td>
+                    Points
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for liste in listArray  %}
+                    <tr class="choiceList" data-listid="{{ liste.id }}">
+                        <td>
+                            {{ liste.name }}
+                        </td>
+                        <td>
+                            {{ liste.pointsLimit }} pts
+                        </td>
+                    </tr>
+                </a>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

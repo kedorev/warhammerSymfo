@@ -174,9 +174,9 @@ class DefaultController extends Controller
     public function showAllList()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:Liste');
-        $list = $repository->findAll();
+        $list = $repository->getAllListByUser($this->getUser()->getId());
 
-        return $this->render('@MainApp/Liste/allList.html.twig', array('listArray' => $list));
+        return $this->render('MainAppBundle:Liste:allList.html.twig', array('listArray' => $list));
     }
 
     /**
@@ -212,6 +212,48 @@ class DefaultController extends Controller
         }
 
         return new Response();
+    }
+
+    /**
+     *
+     * @Route("/about-us",name="main_app_aboutus")
+     * @Method({"GET"})
+     */
+    public function aboutUsAction(Request $request)
+    {
+
+        return $this->render('MainAppBundle:Default:aboutUs.html.twig', array());
+    }
+
+    /**
+     *
+     * @Route("/contact",name="main_app_contact")
+     * @Method({"GET"})
+     *
+     * @todo : faire la page de contact
+     */
+    public function contactAction(Request $request)
+    {
+        return $this->render('MainAppBundle:Default:inWork.html.twig', array());
+    }
+
+    /**
+     * @Route("faction/lists/{id}",name="main_app_listsFaction")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function listsFactionShowAction(Request $request, $id)
+    {
+
+        $faction = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:Faction')->findOneById($id);
+        $list = null;
+        if(isset($faction))
+        {
+            $repository = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:Liste');
+            $list = $repository->getAllListByFaction($id);
+        }
+        return $this->render('MainAppBundle:Liste:allList.html.twig', array('listArray' => $list));
     }
 
 }

@@ -81,21 +81,26 @@ class FormationEntityController extends Controller
     /**
      * Deletes a formationEntity entity.
      *
-     * Route("/{id}", name="formationentity_delete")
+     * Route("list/formation/delete", name="formationentity_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, FormationEntity $formationEntity)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($formationEntity);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($formationEntity);
-            $em->flush();
+        $listId = $request->get('list_id');
+        if($listId == null)
+        {
+            $listId = $request->request->get('mainappbundle_formationentity')['listId'];
         }
 
-        return $this->redirectToRoute('formationentity_index');
+        $FormationId = $request->get('formation_id');
+
+        $em = $this->getDoctrine()->getManager();
+        $formation = $this->getDoctrine()->getRepository(FormationEntity::class)->findOneById($FormationId);
+
+        $em->remove($formation);
+        die;
+        $em->flush();
+        return $this->redirectToRoute('main_app_listShow',  array('id' => $listId));
     }
 
     /**

@@ -51,6 +51,18 @@ class LoadFactionData extends AbstractFixture implements OrderedFixtureInterface
                 "name" => "Demons",
                 "type" => "Chaos",
             ),
+            '8' => array(
+                "name" => "Space marine du chaos",
+                "type" => "Chaos",
+            ),
+            '9' => array(
+                "name" => "Thousand Sun",
+                "type" => "Chaos",
+            ),
+            '10' => array(
+                "name" => "Blood Angel",
+                "type" => "Imperium",
+            ),
         );
 
         foreach($keyWords as $factionData)
