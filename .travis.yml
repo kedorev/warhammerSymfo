@@ -1,0 +1,38 @@
+# Project language
+language: php
+
+# Allows use container-based infrastructure
+sudo: false
+
+# Start mysql service
+services:
+  - mysql
+
+# Cache composer packages so "composer install" is faster
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+php:
+  - 7.1
+
+
+# Update composer
+before-install:
+  - composer self-update
+
+# Install composer dependencies,
+# Create database, schema and fixtures
+install:
+  - composer dumpautoload
+  - composer install
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
+  - wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
+
+script:
+  - sh deploy.sh
+
+
+notifications:
+  email:
+    - kedorev@gmail.com
