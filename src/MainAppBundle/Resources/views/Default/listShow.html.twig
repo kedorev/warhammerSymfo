@@ -32,14 +32,14 @@
                     </div>
                 </div>
 
-
-                {{ dump(liste) }}
+{#
+                {{ dump(liste) }}#}
 
 
                 <div class="panel-group" id="accordion">
                     {% set formationNum = 1 %}
                     {% for formation in liste.formationsListe %}
-                    {{ dump(formation) }}
+                    {#{{ dump(formation) }}#}
                         <div class="panel panel-default">
                             <div class="panel-heading collapse-focus" data-focus="{{ formationNum }}">
                                 <h4 class="panel-title">
@@ -48,6 +48,7 @@
                                             <span class="list-group-item">{{ formation.formationModel.name }}</span>
 
                                             {% for requirement in formation.formationModel.formationRequirements %}
+
                                                 <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
                                             {% endfor %}
                                         </div>

@@ -33,6 +33,7 @@ class Weapons_Model
      */
     private $weapon;
 
+
     /**
      * @var
      * @ORM\Column(type="integer", name="count")

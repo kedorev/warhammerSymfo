@@ -5,6 +5,11 @@ namespace MainAppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+use MainAppBundle\Entity\weaponEntity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use MainAppBundle\Entity\Models;
 
 class weaponEntityType extends AbstractType
 {
@@ -13,7 +18,12 @@ class weaponEntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->removeg('modelEntity')->add('weaponModel');
+        $builder->remove('modelEntity');
+        $builder->add('weaponModel', EntityType::class, [
+            'class' => Models::class,
+            'query_builder' => function (EntityRepository $repository) use ($options) {
+                return $repository->getWeaponFromWeaponList($options['squad_type']);
+            }]);
     }
     
     /**

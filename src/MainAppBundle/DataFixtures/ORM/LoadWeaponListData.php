@@ -33,10 +33,7 @@ class LoadWeaponListData extends AbstractFixture implements OrderedFixtureInterf
         foreach ($modelsData as $modelData) {
             $list = new weaponList();
             $list->setName($modelData['Name']);
-            foreach($modelData["Weapons"] as $weapon)
-            {
-                $list->addWeapon($this->getReference($weapon));
-            }
+
 
             $manager->persist($list);
             $manager->flush();

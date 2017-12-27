@@ -10,7 +10,7 @@ namespace MainAppBundle\Repository;
  */
 class weaponEntityRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getWeaponFromWeaponList(int $weaponListId)
+    public function getWeaponFromWeaponList($weaponListId)
     {
         $query = $this->createQueryBuilder('we')
             ->join('we.weaponModel',"wm")
