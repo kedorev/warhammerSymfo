@@ -69,16 +69,17 @@ Enjoy!
 [13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
 
 Mise en place de système de test :
-----------------------------------
+========================
 
-Behat : test les processus généraux
-Commande pour executé les tests :
-
-"vendor/bin/behat"
+Behat :
+-------
+ 
+Commande pour executé les tests : "vendor/bin/behat"
 
 Les fichiers sont dans features/bootstrap
 
 Phpunit :
+---------
 
 "vendor/bin/phpunit"
 
