@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+{#<nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,9 +8,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/Models">Models </a></li>
+                &#123;&#35;<li class="active"><a href="/Models">Models </a></li>&#35;&#125;
                 <li><a href="/factions">Factions</a></li>
-                <li><a href="{{ path('main_app_squad') }}">squad</a></li>
+               &#123;&#35; <li><a href="{{ path('main_app_squad') }}">squad</a></li>&#35;&#125;
                 <li><a href="{{ path('main_app_list') }}">list create</a></li>
                 <li><a href="{{ path('showAllList') }}">lists</a></li>
 
@@ -41,4 +41,43 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
+</nav>#}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('main_app_index') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ path('main_app_factions') }}">{{ 'menu.Factions'|trans }}</a>
+            </li>
+            {# <li><a href="{{ path('main_app_squad') }}">squad</a></li>#}
+            <li class="nav-item"><a class="nav-link" href="{{ path('main_app_list') }}">list create</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('showAllList') }}">lists</a></li>
+            {#<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>#}
+        </ul>
+        <ul  class="navbar-nav">
+            {% if app.user %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_logout') }}">{{ 'menu.logout'|trans }}</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">{{ 'menu.login'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_registration_register') }}">{{ 'menu.register'|trans }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>

@@ -115,6 +115,16 @@ class Models
      */
     private $equipements;
 
+    /**
+     * @ORM\Column(name="nb_psychic_power", type="integer")
+     */
+    private $nbPsychicPower;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\PsychicCategory")
+     */
+    private $psychicCategoryAvailable;
 
     /**
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\ModelEntity",mappedBy="modelTemplate")
@@ -630,5 +640,63 @@ class Models
     public function getEquipements()
     {
         return $this->equipements;
+    }
+
+    /**
+     * Set nbPsychicPower
+     *
+     * @param integer $nbPsychicPower
+     *
+     * @return Models
+     */
+    public function setNbPsychicPower($nbPsychicPower)
+    {
+        $this->nbPsychicPower = $nbPsychicPower;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPsychicPower
+     *
+     * @return integer
+     */
+    public function getNbPsychicPower()
+    {
+        return $this->nbPsychicPower;
+    }
+
+    /**
+     * Add psychicCategoryAvailable
+     *
+     * @param \MainAppBundle\Entity\PsychicCategory $psychicCategoryAvailable
+     *
+     * @return Models
+     */
+    public function addPsychicCategoryAvailable(\MainAppBundle\Entity\PsychicCategory $psychicCategoryAvailable)
+    {
+        $this->psychicCategoryAvailable[] = $psychicCategoryAvailable;
+
+        return $this;
+    }
+
+    /**
+     * Remove psychicCategoryAvailable
+     *
+     * @param \MainAppBundle\Entity\PsychicCategory $psychicCategoryAvailable
+     */
+    public function removePsychicCategoryAvailable(\MainAppBundle\Entity\PsychicCategory $psychicCategoryAvailable)
+    {
+        $this->psychicCategoryAvailable->removeElement($psychicCategoryAvailable);
+    }
+
+    /**
+     * Get psychicCategoryAvailable
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPsychicCategoryAvailable()
+    {
+        return $this->psychicCategoryAvailable;
     }
 }
