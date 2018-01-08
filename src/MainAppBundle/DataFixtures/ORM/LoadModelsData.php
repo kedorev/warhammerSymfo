@@ -151,6 +151,7 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
             $model->setToughness($modelData['Toughness']);
             $model->setLeadership($modelData['Ld']);
             $model->setPower($modelData['PP']);
+            $model->setNbPsychicPower(0);
             $profilsData = $modelData['profil'];
             foreach($profilsData as $profilData)
             {

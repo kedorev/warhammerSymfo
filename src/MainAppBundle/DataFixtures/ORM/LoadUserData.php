@@ -9,7 +9,6 @@
 // src/AppBundle/DataFixtures/ORM/LoadUserData.php
 namespace AppBundle\DataFixtures\ORM;
 
-use Acme\AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -39,7 +38,7 @@ class LoadUserData
         $user->setPlainPassword('admin');
         $user->setEnabled(true);
         $user->setUsername("admin");
-        $user->addRole('ROLE_AS');
+        $user->addRole('ROLE_ADMIN');
         $this->addReference('user-admin', $user);
         $userManager->updateUser($user);
     }

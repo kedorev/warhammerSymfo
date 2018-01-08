@@ -142,6 +142,7 @@ class Models
         $this->keysWord = new ArrayCollection();
         $this->weapons = new ArrayCollection();
         $this->profils = new ArrayCollection();
+        $this->psychicCategoryAvailable = new ArrayCollection();
     }
 
 

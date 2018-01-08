@@ -7,3 +7,9 @@ main_app_homepage:
 main_app_login:
     path:     /login_1
     defaults: { _controller: MainAppBundle:User:login }
+
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin

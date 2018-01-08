@@ -1,6 +1,7 @@
 <?php
 
 namespace MainAppBundle\Repository;
+use MainAppBundle\Entity\FactionType;
 
 /**
  * FactionRepository
@@ -20,18 +21,9 @@ class FactionRepository extends \Doctrine\ORM\EntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function getAllType()
-    {
-        $em = $this->getEntityManager();
-        $query = $em->createQueryBuilder();
-        $query->select('f.type');
-        $query->from("MainAppBundle:Faction",'f');
-        $query->orderBy("f.type");
-        $query->distinct();
-        return $query->getQuery()->getResult();
-    }
 
-    public function getTypeFactionSortByName(string $type)
+
+    public function getTypeFactionSortByName(FactionType $type)
     {
         $em = $this->getEntityManager();
         $query = $em->createQueryBuilder();

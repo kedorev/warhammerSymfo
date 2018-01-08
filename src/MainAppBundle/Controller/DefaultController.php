@@ -65,11 +65,11 @@ class DefaultController extends Controller
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:Faction');
 
-        $factionsType = $repository->getAllType();
+        $factionsType = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:FactionType')->findAll();
 
         foreach($factionsType as $factionType)
         {
-            $factions[$factionType["type"]] = $repository->getTypeFactionSortByName($factionType["type"]);
+            $factions[$factionType["type"]] = $repository->getTypeFactionSortByName($factionType);
         }
         return $this->render('MainAppBundle:Default:factions.html.twig', array('factions' => $factions));
     }

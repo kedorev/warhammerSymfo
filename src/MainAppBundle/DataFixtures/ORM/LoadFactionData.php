@@ -69,7 +69,7 @@ class LoadFactionData extends AbstractFixture implements OrderedFixtureInterface
         {
             $faction = new Faction();
             $faction->setName($factionData["name"]);
-            $faction->setType($factionData["type"]);
+            $faction->setType($this->getReference($factionData["type"]));
 
             $manager->persist($faction);
             $manager->flush();
@@ -82,6 +82,6 @@ class LoadFactionData extends AbstractFixture implements OrderedFixtureInterface
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 1;
+        return 2;
     }
 }

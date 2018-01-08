@@ -32,7 +32,7 @@ class Faction
     /**
      * @var
      *
-     * @ORM\Column(name="type", type="string", length=64)
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\FactionType")
      */
     private $type;
 
@@ -78,7 +78,7 @@ class Faction
      *
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -158,14 +158,26 @@ class Faction
         return $this->models;
     }
 
+
+
+    public function __toString()
+    {
+        $string = $this->getName();
+        if(is_null($string))
+        {
+            $string = "";
+        }
+        return $string;
+    }
+
     /**
      * Set type
      *
-     * @param string $type
+     * @param \MainAppBundle\Entity\FactionType $type
      *
      * @return Faction
      */
-    public function setType($type)
+    public function setType(\MainAppBundle\Entity\FactionType $type = null)
     {
         $this->type = $type;
 
@@ -175,15 +187,10 @@ class Faction
     /**
      * Get type
      *
-     * @return string
+     * @return \MainAppBundle\Entity\FactionType
      */
     public function getType()
     {
         return $this->type;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
     }
 }
