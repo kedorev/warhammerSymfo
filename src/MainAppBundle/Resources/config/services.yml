@@ -11,3 +11,21 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Faction }
         public: true
+    admin.FactionType:
+        class: MainAppBundle\Admin\FactionTypeAdmin
+        arguments: [~, MainAppBundle\Entity\FactionType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Faction Type }
+        public: true
+    admin.Abilities:
+        class: MainAppBundle\Admin\AbilitiesAdmin
+        arguments: [~, MainAppBundle\Entity\Abilities, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Abilities }
+        public: true
+    admin.Artefact:
+        class: MainAppBundle\Admin\ArtefactAdmin
+        arguments: [~, MainAppBundle\Entity\Artefact, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Artefact }
+        public: true

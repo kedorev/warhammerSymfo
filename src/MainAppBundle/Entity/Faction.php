@@ -49,6 +49,19 @@ class Faction
      */
     private $models;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\SubFaction", mappedBy="faction")
+     */
+    private $SubFactions;
+
+    /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Artefact", mappedBy="faction")
+     */
+    private $artefacts;
+
     /**
      * Get id
      *
@@ -88,6 +101,9 @@ class Faction
     public function __construct()
     {
         $this->squad = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->SubFactions = new ArrayCollection();
+        $this->artefacts = new ArrayCollection();
+        $this->models = new ArrayCollection();
     }
 
     /**
@@ -192,5 +208,73 @@ class Faction
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Add artefact
+     *
+     * @param \MainAppBundle\Entity\Artefact $artefact
+     *
+     * @return Faction
+     */
+    public function addArtefact(\MainAppBundle\Entity\Artefact $artefact)
+    {
+        $this->artefacts[] = $artefact;
+
+        return $this;
+    }
+
+    /**
+     * Remove artefact
+     *
+     * @param \MainAppBundle\Entity\Artefact $artefact
+     */
+    public function removeArtefact(\MainAppBundle\Entity\Artefact $artefact)
+    {
+        $this->artefacts->removeElement($artefact);
+    }
+
+    /**
+     * Get artefacts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArtefacts()
+    {
+        return $this->artefacts;
+    }
+
+    /**
+     * Add subFaction
+     *
+     * @param \MainAppBundle\Entity\SubFaction $subFaction
+     *
+     * @return Faction
+     */
+    public function addSubFaction(\MainAppBundle\Entity\SubFaction $subFaction)
+    {
+        $this->SubFactions[] = $subFaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove subFaction
+     *
+     * @param \MainAppBundle\Entity\SubFaction $subFaction
+     */
+    public function removeSubFaction(\MainAppBundle\Entity\SubFaction $subFaction)
+    {
+        $this->SubFactions->removeElement($subFaction);
+    }
+
+    /**
+     * Get subFactions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubFactions()
+    {
+        return $this->SubFactions;
     }
 }

@@ -136,6 +136,11 @@ class Models
      */
     private $requirementSquad;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Agreement", mappedBy="models" )
+     */
+    private $aggrements;
+
 
     public function __construct() {
         $this->abilities = new ArrayCollection();
@@ -143,6 +148,7 @@ class Models
         $this->weapons = new ArrayCollection();
         $this->profils = new ArrayCollection();
         $this->psychicCategoryAvailable = new ArrayCollection();
+        $this->aggrements = new ArrayCollection();
     }
 
 
@@ -699,5 +705,39 @@ class Models
     public function getPsychicCategoryAvailable()
     {
         return $this->psychicCategoryAvailable;
+    }
+
+    /**
+     * Add aggrement
+     *
+     * @param \MainAppBundle\Entity\Agreement $aggrement
+     *
+     * @return Models
+     */
+    public function addAggrement(\MainAppBundle\Entity\Agreement $aggrement)
+    {
+        $this->aggrements[] = $aggrement;
+
+        return $this;
+    }
+
+    /**
+     * Remove aggrement
+     *
+     * @param \MainAppBundle\Entity\Agreement $aggrement
+     */
+    public function removeAggrement(\MainAppBundle\Entity\Agreement $aggrement)
+    {
+        $this->aggrements->removeElement($aggrement);
+    }
+
+    /**
+     * Get aggrements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAggrements()
+    {
+        return $this->aggrements;
     }
 }

@@ -7,17 +7,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FactionAdmin extends AbstractAdmin
+class AbilitiesAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
-            ->add('name', 'text')
-            ->add('type','entity', array(
-                'class'=>'MainAppBundle\Entity\FactionType',
-                'choice_label' => 'name'
-            ))
-        ;
+        $formMapper->add('name', 'text')->add('description','textarea');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -27,8 +21,6 @@ class FactionAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name')
-            ->add('id')
-            ->add('type.name');
+        $listMapper->add('id')->addIdentifier('name')->add('description');
     }
 }

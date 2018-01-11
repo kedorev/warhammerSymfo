@@ -22,6 +22,20 @@ class Artefact
     private $id;
 
 
+    /**
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="artefacts")
+     */
+    private $faction;
 
     /**
      * Get id
@@ -36,4 +50,76 @@ class Artefact
 
 
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Artefact
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Artefact
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set faction
+     *
+     * @param \MainAppBundle\Entity\Faction $faction
+     *
+     * @return Artefact
+     */
+    public function setFaction(\MainAppBundle\Entity\Faction $faction = null)
+    {
+        $this->faction = $faction;
+
+        return $this;
+    }
+
+    /**
+     * Get faction
+     *
+     * @return \MainAppBundle\Entity\Faction
+     */
+    public function getFaction()
+    {
+        return $this->faction;
+    }
 }

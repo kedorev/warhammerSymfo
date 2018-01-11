@@ -69,7 +69,7 @@ class DefaultController extends Controller
 
         foreach($factionsType as $factionType)
         {
-            $factions[$factionType["type"]] = $repository->getTypeFactionSortByName($factionType);
+            $factions[$factionType->getName()] = $repository->getTypeFactionSortByName($factionType);
         }
         return $this->render('MainAppBundle:Default:factions.html.twig', array('factions' => $factions));
     }
