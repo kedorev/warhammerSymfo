@@ -29,3 +29,27 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Artefact }
         public: true
+    admin.Agreement:
+        class: MainAppBundle\Admin\AgreementAdmin
+        arguments: [~, MainAppBundle\Entity\Agreement, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Agreement }
+        public: true
+    admin.Keyword:
+        class: MainAppBundle\Admin\KeyWordAdmin
+        arguments: [~, MainAppBundle\Entity\KeyWord, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: KeyWord }
+        public: true
+    admin.FormationRequirement:
+        class: MainAppBundle\Admin\FormationRequirementAdmin
+        arguments: [~, MainAppBundle\Entity\FormationRequirement, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: FormationRequirement }
+        public: true
+    admin.Formation:
+        class: MainAppBundle\Admin\FormationAdmin
+        arguments: [~, MainAppBundle\Entity\Formation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Formation }
+        public: true

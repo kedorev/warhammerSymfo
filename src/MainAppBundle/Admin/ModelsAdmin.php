@@ -28,6 +28,13 @@ class ModelsAdmin extends AbstractAdmin
                     'property' => 'name',
                     'multiple' => true
                 ])
+            ->end()
+            ->with('Agreements')
+                ->add('aggrements', 'sonata_type_model', [
+                    'class' => 'MainAppBundle\Entity\Agreement',
+                    'property' => 'description',
+                    'multiple' => true
+                ])
             ->end();
     }
 

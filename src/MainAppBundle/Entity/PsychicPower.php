@@ -36,6 +36,13 @@ class PsychicPower
     private $power;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="range", type="integer", nullable=true)
+     */
+    private $range;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
@@ -152,5 +159,29 @@ class PsychicPower
     public function getPsychicCategory()
     {
         return $this->PsychicCategory;
+    }
+
+    /**
+     * Set range
+     *
+     * @param integer $range
+     *
+     * @return PsychicPower
+     */
+    public function setRange($range)
+    {
+        $this->range = $range;
+
+        return $this;
+    }
+
+    /**
+     * Get range
+     *
+     * @return integer
+     */
+    public function getRange()
+    {
+        return $this->range;
     }
 }

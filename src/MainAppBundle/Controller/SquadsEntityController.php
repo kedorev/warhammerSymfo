@@ -68,14 +68,15 @@ class SquadsEntityController extends Controller
 
                 $modelEntity->setProfilEntity($profil);
                 $modelEntity->setModelTemplate($squadModelRequirement->getModel());
-                $profil->setSave($modelModel->getSave());
-                $profil->setLeadership($modelModel->getLeadership());
-                $profil->setToughness($modelModel->getToughness());
+
                 $profil->setWound($modelModel->getWound());
 
                 $profilData = $modelEntity->getProfilForCurrentLife($profil->getWound());
 
                 $profil->setAttack($profilData->getAttack());
+                $profil->setSave($profilData->getSave());
+                $profil->setLeadership($profilData->getLeadership());
+                $profil->setToughness($profilData->getToughness());
                 $profil->setBS($profilData->getBS());
                 $profil->setMove($profilData->getMove());
                 $profil->setWS($profilData->getWS());

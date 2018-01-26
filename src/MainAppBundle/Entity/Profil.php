@@ -71,6 +71,31 @@ class Profil
      */
     private $attack;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="Leadership", type="integer")
+     */
+    private $leadership;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="Save", type="integer")
+     */
+    private $save;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="toughness", type="integer")
+     */
+    private $toughness;
+
+
+
     /**
      * Get id
      *
@@ -249,5 +274,77 @@ class Profil
     public function getMaxWound()
     {
         return $this->maxWound;
+    }
+
+    /**
+     * Set leadership
+     *
+     * @param integer $leadership
+     *
+     * @return Profil
+     */
+    public function setLeadership($leadership)
+    {
+        $this->leadership = $leadership;
+
+        return $this;
+    }
+
+    /**
+     * Get leadership
+     *
+     * @return integer
+     */
+    public function getLeadership()
+    {
+        return $this->leadership;
+    }
+
+    /**
+     * Set save
+     *
+     * @param integer $save
+     *
+     * @return Profil
+     */
+    public function setSave($save)
+    {
+        $this->save = $save;
+
+        return $this;
+    }
+
+    /**
+     * Get save
+     *
+     * @return integer
+     */
+    public function getSave()
+    {
+        return $this->save;
+    }
+
+    /**
+     * Set toughness
+     *
+     * @param integer $toughness
+     *
+     * @return Profil
+     */
+    public function setToughness($toughness)
+    {
+        $this->toughness = $toughness;
+
+        return $this;
+    }
+
+    /**
+     * Get toughness
+     *
+     * @return integer
+     */
+    public function getToughness()
+    {
+        return $this->toughness;
     }
 }

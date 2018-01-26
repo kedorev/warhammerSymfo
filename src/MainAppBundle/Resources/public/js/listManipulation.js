@@ -129,11 +129,17 @@ jQuery(document).ready(function($)
         form.submit();
     });
 
-    $(".choiceList").click(function(){
-        var url = baseUrl+"/list/"+$(this).attr("data-listId");
 
-        window.location = url;
+    $(document).on('click', '.exportETC', function()
+    {
+        var form = $('<form action="' + Routing.generate('export_ETC',"",true) + '" method="post">' +
+            '<input type="number" name="list_id" value="' + $(this).attr("data-listId") + '" />' +
+            '</form>');
+        $('body').append(form);
+        form.submit();
     });
+
+
 });
 
 function validateListData()

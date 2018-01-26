@@ -31,12 +31,6 @@ class Models
 
 
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="toughness", type="integer")
-     */
-    private $toughness;
 
     /**
      * @var int
@@ -46,19 +40,7 @@ class Models
     private $wound;
 
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Leadership", type="integer")
-     */
-    private $leadership;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Save", type="integer")
-     */
-    private $save;
 
 
     /**
@@ -275,29 +257,7 @@ class Models
         return $this->name;
     }
 
-    /**
-     * Set toughness
-     *
-     * @param integer $toughness
-     *
-     * @return Models
-     */
-    public function setToughness($toughness)
-    {
-        $this->toughness = $toughness;
 
-        return $this;
-    }
-
-    /**
-     * Get toughness
-     *
-     * @return integer
-     */
-    public function getToughness()
-    {
-        return $this->toughness;
-    }
 
     /**
      * Set wound
@@ -323,53 +283,7 @@ class Models
         return $this->wound;
     }
 
-    /**
-     * Set leadership
-     *
-     * @param integer $leadership
-     *
-     * @return Models
-     */
-    public function setLeadership($leadership)
-    {
-        $this->leadership = $leadership;
 
-        return $this;
-    }
-
-    /**
-     * Get leadership
-     *
-     * @return integer
-     */
-    public function getLeadership()
-    {
-        return $this->leadership;
-    }
-
-    /**
-     * Set save
-     *
-     * @param integer $save
-     *
-     * @return Models
-     */
-    public function setSave($save)
-    {
-        $this->save = $save;
-
-        return $this;
-    }
-
-    /**
-     * Get save
-     *
-     * @return integer
-     */
-    public function getSave()
-    {
-        return $this->save;
-    }
 
     /**
      * Set point

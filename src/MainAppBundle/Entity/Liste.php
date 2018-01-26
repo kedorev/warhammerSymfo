@@ -56,14 +56,12 @@ class Liste
      */
     private $owner;
 
-
     /**
      * @var array
      *
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\FormationEntity", mappedBy="list")
      */
     private $formationsListe;
-
 
     /**
      * @var integer
@@ -339,13 +337,20 @@ class Liste
         throw new \Exception("Wrong artefact number");
     }
 
-    public function isValid()
+
+    public function getValid()
     {
         if($this->getTotalPoint() > $this->getPointsLimit())
         {
             return false;
         }
-
+        foreach($this->getFormationsListe() as $formation)
+        {
+            if(!($formation->isValide()))
+            {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -371,5 +376,29 @@ class Liste
     public function getVisibility()
     {
         return $this->visibility;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFaction()
+    {
+        $faction = '';
+
+        foreach ( $this->getFormationsListe() as $formation )
+        {
+            //dump(strpos( $faction, $formation->getFaction()->getName()));
+            if( strpos( $faction, $formation->getFaction()->getName() ) == false )
+            {
+                if($faction !== '')
+                {
+                    $faction = $faction . " / ";
+                }
+                $faction = $faction . $formation->getFaction()->getName();
+
+            }
+            //dump($formation);
+        }
+        return $faction;
     }
 }
