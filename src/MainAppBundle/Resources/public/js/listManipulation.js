@@ -143,6 +143,21 @@ jQuery(document).ready(function($)
         form.submit();
     });
 
+    $(document).on('click', '.collapseRow', function()
+    {
+        var row = $(this).attr("data-row");
+        var $row =$("#"+row);
+        if($row.is(":Visible"))
+        {
+            $row.hide();
+        }
+        else
+        {
+            $row.show();
+        }
+    });
+
+
 
 });
 

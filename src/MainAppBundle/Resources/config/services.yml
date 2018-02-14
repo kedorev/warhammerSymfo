@@ -29,20 +29,20 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Artefact }
         public: true
+    admin.Keyword:
+        class: MainAppBundle\Admin\KeywordAdmin
+        arguments: [~, MainAppBundle\Entity\KeyWord, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: KeyWord }
+        public: true
     admin.Agreement:
         class: MainAppBundle\Admin\AgreementAdmin
         arguments: [~, MainAppBundle\Entity\Agreement, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Agreement }
         public: true
-    admin.Keyword:
-        class: MainAppBundle\Admin\KeyWordAdmin
-        arguments: [~, MainAppBundle\Entity\KeyWord, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: KeyWord }
-        public: true
     admin.FormationRequirement:
-        class: MainAppBundle\Admin\FormationRequirementAdmin
+        class: MainAppBundle\Admin\FormationrequirementAdmin
         arguments: [~, MainAppBundle\Entity\FormationRequirement, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: FormationRequirement }
@@ -52,4 +52,10 @@ services:
         arguments: [~, MainAppBundle\Entity\Formation, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Formation }
+        public: true
+    admin.SquadType:
+        class: MainAppBundle\Admin\SquadtypeAdmin
+        arguments: [~, MainAppBundle\Entity\SquadType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Squad Type }
         public: true

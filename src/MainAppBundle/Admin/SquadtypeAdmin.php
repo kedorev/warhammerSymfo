@@ -2,36 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: lerm
- * Date: 24/01/2018
- * Time: 10:54
+ * Date: 14/02/2018
+ * Time: 15:43
  */
 
 namespace MainAppBundle\Admin;
 
 
-
-use Doctrine\DBAL\Types\TextType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FormationAdmin extends AbstractAdmin
+class SquadtypeAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with("data")
-                ->add('name', 'text')
-            ->end()
-            ->with('Requirements')
-                ->add('FormationRequirements', 'sonata_type_model', [
-                    'class' => 'MainAppBundle\Entity\FormationRequirement',
-                    'property' => 'name',
-                    'multiple' => true,
-                ])
-            ->end()
-        ;
+            ->add('name', 'text');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -41,6 +29,6 @@ class FormationAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper->addIdentifier('name')->add('id');
     }
 }

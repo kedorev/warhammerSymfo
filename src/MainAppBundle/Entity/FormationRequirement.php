@@ -155,4 +155,11 @@ class FormationRequirement
     {
         return $this->SquadType;
     }
+
+
+    public function getName()
+    {
+        return $this->getFormation().'_'.$this->getSquadType();
+    }
+
 }

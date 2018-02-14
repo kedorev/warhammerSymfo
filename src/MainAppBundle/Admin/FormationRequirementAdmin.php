@@ -15,27 +15,32 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class FormationRequirementAdmin extends AbstractAdmin
+class FormationrequirementAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text')
+            ->add('formation', 'sonata_type_model', [
+                'class' => 'MainAppBundle\Entity\Formation',
+                'property' => 'name',
+            ])
             ->add('min','integer')
             ->add('max','integer')
-            ->add('type','SquadType', array(
-                'class'=>'MainAppBundle\Entity\SquadType',
-                'choice_label' => 'name'
-            ));
+            ->add('SquadType', 'sonata_type_model', [
+                'class' => 'MainAppBundle\Entity\SquadType',
+                'property' => 'name',
+            ]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('name');
+        $datagridMapper->add('formation')
+            ->add("SquadType");
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper->addIdentifier('formation')
+            ->add("SquadType");
     }
 }

@@ -33,7 +33,8 @@ class ModelsAdmin extends AbstractAdmin
                 ->add('aggrements', 'sonata_type_model', [
                     'class' => 'MainAppBundle\Entity\Agreement',
                     'property' => 'description',
-                    'multiple' => true
+                    'multiple' => true,
+                    'required' => false
                 ])
             ->end();
     }
@@ -45,6 +46,6 @@ class ModelsAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper->addIdentifier('name')->add('id')->add('factionKeyWord');
     }
 }

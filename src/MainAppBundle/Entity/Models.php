@@ -458,6 +458,10 @@ class Models
 
     public function __toString()
     {
+        if($this->name == null)
+        {
+            return "";
+        }
         return $this->getName();
     }
 
@@ -654,4 +658,5 @@ class Models
     {
         return $this->aggrements;
     }
+
 }

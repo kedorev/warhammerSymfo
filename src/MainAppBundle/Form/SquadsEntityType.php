@@ -2,7 +2,12 @@
 
 namespace MainAppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use MainAppBundle\Entity\Squad;
+use MainAppBundle\Entity\weaponEntity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +18,13 @@ class SquadsEntityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->remove('formation')->add('squadModel');
+        $builder->remove('formation');
+            $builder->add('squadAvailable', EntityType::class, [
+                'class' => Squad::class,
+                'query_builder' => function (EntityRepository $repository) use ($options) {
+                    return $repository->getAllSquadFromFactionWithoutExec($options['faction']);
+                }]);
+            //->add('squadModel')->add();
     }
     
     /**
@@ -21,6 +32,8 @@ class SquadsEntityType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setDefined('squad_type');
+        $resolver->setDefined('faction');
         $resolver->setDefaults(array(
             'data_class' => 'MainAppBundle\Entity\SquadsEntity'
         ));

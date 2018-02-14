@@ -122,3 +122,9 @@ textarea:focus, input:focus{
 {
     font-size: 14px;
 }
+
+.modelName
+{
+    font-size: 16px;
+    font-weight: bold;
+}

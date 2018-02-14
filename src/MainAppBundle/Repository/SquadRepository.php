@@ -11,8 +11,15 @@ namespace MainAppBundle\Repository;
 class SquadRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    /**
-     *
-     */
+
+    public function getAllSquadFromFactionWithoutExec($factionId)
+    {
+    $query = $this->createQueryBuilder('s')
+        ->join("s.faction", 'f')
+        ->where("f.id = :factionId")
+        ->setParameter("factionId", $factionId);
+    return $query;
+    }
+
 
 }

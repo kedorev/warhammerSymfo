@@ -58,7 +58,7 @@
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                 <div class="row">
                                     <div class="col-md-11">
-                                        <h4 class="">{{ formation.formationModel.name }}</h4>
+                                        <h3 class="">{{ formation.formationModel.name }}</h3>
                                     </div>
                                     <div class="col-md-1">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -84,12 +84,12 @@
                         <div class="panel-body row">
                             {% for squadEntity in formation.SquadsEntity %}
                                 <div class="col-lg-12 col-md-12">
-                                    <div class="flex-one-row">
-                                        {{ squadEntity.squadModel.name }}
-                                        {{ squadEntity.totalPoint }} pts
+                                    <div class="flex-one-row collapseRow" data-row="collapseS{{ squadEntity.id }}">
+                                        <span class="modelName">{{ squadEntity.squadModel.name }}</span> {{ squadEntity.totalPoint }} pts
                                     </div>
-                                    <div class="card-container">
-                                    {% for models in squadEntity.ModelsEntity %}
+                                    <div id="collapseS{{ squadEntity.id }}" style="display: none;">
+                                        <div class="card-container">
+                                        {% for models in squadEntity.ModelsEntity %}
 
                                             <div class="card">
                                                 <div class="card-block">
@@ -116,114 +116,17 @@
                                                 </div>
                                             </div>
 
-
-                                            {#{% set modelTemplate = models.getModelTemplate %}
-                                            <div class="dataModels" id="model{{ models.id }}">
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                        <div class="model">
-                                                            <table class="table table-bordered row">
-                                                                <tr>
-                                                                    <th class="col-md-4">
-                                                                        Nom
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Touche CaC
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Touche Tir
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Force
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Endurance
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        PdV
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Attaque
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Commandement
-                                                                    </th>
-                                                                    <th class="col-md-1 text-center">
-                                                                        Sauvegarde
-                                                                    </th>
-                                                                </tr>
-                                                                {% for profil in models.getProfilEntity %}
-                                                                    <tr>
-                                                                        <td class="">
-                                                                            {{ modelTemplate.name }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.BS }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.WS }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.strength }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.toughness }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.wound }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.attack }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.leadership }}
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            {{ profil.save }}
-                                                                        </td>
-                                                                    </tr>
-                                                                {% endfor %}
-                                                            </table>
-
-                                                            {% set weapons = modelTemplate.weapons %}
-                                                            {% include "@MainApp/Partial/_weapon.html.twig"  %}
-
-                                                            {% set abilities = modelTemplate.abilities %}
-                                                            <table class="table table-bordered row">
-                                                                <th colspan="2"> <H3>Competence</H3></th>
-                                                                {% for ability in abilities %}
-                                                                    <tr>
-                                                                        <td class="col-md-2">
-                                                                            {{ ability.name }}
-                                                                        </td>
-                                                                        <td class="col-md-10">
-                                                                            {{ ability.description }}
-                                                                        </td>
-                                                                    </tr>
-                                                                {% endfor %}
-                                                            </table>
-
-                                                            {% set keywords = modelTemplate.keysWord %}
-                                                            <H3>Mots clefs</H3>
-                                                            {% for keyword in keywords %}
-                                                                {{ keyword.name }},
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1"></div>
-                                                </div>
-                                            </div>#}
-
-                                    {% endfor %}
-                                        {% if squadEntity.nbModels < squadEntity.squadModel.max %}
-                                        {% for j in range (squadEntity.nbModels,squadEntity.squadModel.max -1) %}
-                                            <div class="card">
-                                                <a class="addModel list-group-item" data-listId="{{liste.id}}" data-squadId="{{ squadEntity.id }}">
-                                                <img src="{{ asset('img/add.png') }}"></a>
-                                            </div>
                                         {% endfor %}
-                                    {% endif %}
+                                            {% if squadEntity.nbModels < squadEntity.squadModel.max %}
+                                                {% for j in range (squadEntity.nbModels,squadEntity.squadModel.max -1) %}
+                                                    <div class="card">
+                                                        <a class="addModel list-group-item" data-listId="{{liste.id}}" data-squadId="{{ squadEntity.id }}">
+                                                        <img src="{{ asset('img/add.png') }}"></a>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
                             {% endfor %}
                             <div class="col-lg-12 col-md-12">

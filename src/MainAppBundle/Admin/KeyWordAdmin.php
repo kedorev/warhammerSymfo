@@ -14,7 +14,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class KeyWordAdmin extends AbstractAdmin
+class KeywordAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
