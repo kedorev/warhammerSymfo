@@ -70,10 +70,11 @@
                                     </div>
                                 {% endif %}
                                 <div class="list-group list-group-horizontal">
+                                    <div class="d-flex flex-row justify-content-between">
                                     {% for requirement in formation.formationModel.formationRequirements %}
-
                                         <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
                                     {% endfor %}
+                                    </div>
                                 </div>
                             </a>
                             {#<span id="resizeF{{formationNum}}" class="glyphicon glyphicon-resize-full"></span>#}

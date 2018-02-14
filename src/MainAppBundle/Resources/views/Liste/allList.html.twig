@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             {% for liste in listArray  %}
-                    <tr class="choiceList" data-listid="{{ liste.id }}">
+                    <tr  class="choiceList" data-href="{{ path('main_app_listShow', {'id': liste.id}) }}">
                         <td>
                             {{ liste.name }}
                         </td>
@@ -22,7 +22,6 @@
                             {{ liste.pointsLimit }} pts
                         </td>
                     </tr>
-                </a>
             {% endfor %}
         </tbody>
     </table>

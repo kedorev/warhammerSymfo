@@ -109,7 +109,7 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/list", name="main_app_list")
+     * @Route("/list/new", name="main_app_list")
      */
     public function listAction(Request $request)
     {
@@ -173,6 +173,11 @@ class DefaultController extends Controller
      */
     public function showAllList()
     {
+        $user = $this->getUser();
+        if(!isset($user))
+        {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
         $repository = $this->getDoctrine()->getManager()->getRepository('MainAppBundle:Liste');
         $list = $repository->getAllListByUser($this->getUser()->getId());
 

@@ -10,6 +10,10 @@ jQuery(document).ready(function($)
         validateListData();
     });
 
+    $(document).on('click', '.choiceList', function()
+    {
+        window.location = $(this).attr("data-href");
+    });
 
     $(document).on('change', '#pointLimit', function()
     {
