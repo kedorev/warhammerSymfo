@@ -22,6 +22,7 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
             '0' => array(
                 'name' => 'XV8 crisis',
                 'type' => 'Elites',
+                'faction' => 'Tau',
                 'requirement' => array(
                     '0' => 'crisis_shashui_into_crisis',
                     '1' => 'crisis_shavre_into_crisis',
@@ -32,6 +33,7 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
             '1' => array(
                 'name' => 'Strike team',
                 'type' => 'Troups',
+                'faction' => 'Tau',
                 'requirement' => array(
                     '0' => 'fire_warrior_into_strike_team',
                 ),
@@ -46,6 +48,7 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
             $squad = new Squad();
             $squad->setName($squadData['name']);
             $squad->setType($this->getReference($squadData['type']));
+            $squad->setFaction($this->getReference($squadData['faction']));
             $squad->setMin($squadData['min']);
             $squad->setMax($squadData['max']);
 

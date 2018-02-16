@@ -8,6 +8,7 @@ use MainAppBundle\Entity\ModelEntity;
 use MainAppBundle\Entity\Models;
 use MainAppBundle\Entity\Profil;
 use MainAppBundle\Entity\ProfilEntity;
+use MainAppBundle\Entity\Squad;
 use MainAppBundle\Entity\SquadsEntity;
 use MainAppBundle\Entity\weaponEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -42,9 +43,17 @@ class SquadsEntityController extends Controller
             $idFormation = $request->request->get('mainappbundle_squadsentity')['factionId'];
         }
         $squadsEntity = new Squadsentity();
-        $form = $this->createForm('MainAppBundle\Form\SquadsEntityType', $squadsEntity);
+
+
+        $formation = $this->getDoctrine()->getManager()->getRepository(FormationEntity::class)->findOneById($idFormation);
+        dump($formation);
+
+        dump($this->getDoctrine()->getManager()->getRepository(Squad::class)->getAllSquadFromFactionWithoutExec( $formation->getFaction()->getId())->getQuery()->getResult());
+        $form = $this->createForm('MainAppBundle\Form\SquadsEntityType', $squadsEntity, [
+            'faction' => $formation->getFaction()->getId(),
+        ]);
         $form->add("listId", HiddenType::class, array("mapped"=>false, "data"=>$listId, "label"=>false));
-        $form->add("factionId", HiddenType::class, array("mapped"=>false, "data"=>$idFormation, "label"=>false));
+        $form->add("formationId", HiddenType::class, array("mapped"=>false, "data"=>$idFormation, "label"=>false));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
