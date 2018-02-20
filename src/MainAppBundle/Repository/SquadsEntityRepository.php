@@ -10,4 +10,5 @@ namespace MainAppBundle\Repository;
  */
 class SquadsEntityRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

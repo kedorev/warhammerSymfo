@@ -40,7 +40,7 @@ class SquadsEntityController extends Controller
         }
         if($idFormation == null)
         {
-            $idFormation = $request->request->get('mainappbundle_squadsentity')['factionId'];
+            $idFormation = $request->request->get('mainappbundle_squadsentity')['formationId'];
         }
         $squadsEntity = new Squadsentity();
 

@@ -59,3 +59,15 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Squad Type }
         public: true
+    admin.PsychicCategory:
+        class: MainAppBundle\Admin\PsychicCategoryAdmin
+        arguments: [~, MainAppBundle\Entity\PsychicCategory, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Psychic category }
+        public: true
+    admin.PsychicPower:
+        class: MainAppBundle\Admin\PsychicPowerAdmin
+        arguments: [~, MainAppBundle\Entity\PsychicPower, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Psychic power }
+        public: true

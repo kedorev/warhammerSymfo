@@ -167,7 +167,6 @@ class DefaultController extends Controller
         return $this->render('@MainApp/Default/listShow.html.twig', array('liste' => $list));
     }
 
-
     /**
      * @Route("/lists", name="showAllList")
      */

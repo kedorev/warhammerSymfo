@@ -2,7 +2,9 @@
 
 namespace MainAppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -70,7 +72,7 @@ class FormationEntity
      */
     public function __construct()
     {
-        $this->SquadsEntity = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->SquadsEntity = new ArrayCollection();
     }
 
     /**
@@ -130,6 +132,27 @@ class FormationEntity
     {
         return $this->SquadsEntity;
     }
+
+    /**
+     * Get squadsEntity by squad type
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSquadsEntityBySquadType(SquadType $squadType)
+    {
+        $result = new ArrayCollection() ;
+        foreach ($this->SquadsEntity as $squad)
+        {
+            if($squad->getSquadModel()->getType() == $squadType)
+            {
+                $result->add($squad);
+            }
+        }
+        return $result;
+    }
+
+
+
 
     /**
      * Set formationModel

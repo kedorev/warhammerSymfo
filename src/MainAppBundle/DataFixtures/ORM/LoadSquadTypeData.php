@@ -22,39 +22,48 @@ class LoadSquadTypeData extends AbstractFixture implements OrderedFixtureInterfa
         $modelsData = array(
             "0" => array(
                 "name"=>"HQ",
-                "img" => "img/QG.png"
+                "img" => "img/QG.png",
+                "order" => 1
             ),
             "1" => array(
                 "name"=>"Troups",
-                "img" => ""
+                "img" => "",
+                "order" => 2
             ),
             "2" => array(
                 "name"=>"Elites",
-                "img" => ""
+                "img" => "",
+                "order" => 3
             ),
             "3" => array(
                 "name"=>"Fast Attack",
-                "img" => ""
+                "img" => "",
+                "order" => 4
             ),
             "4" => array(
                 "name"=>"Heavy Support",
-                "img" => ""
+                "img" => "",
+                "order" => 5
             ),
             "5" => array(
                 "name"=>"Dedicated Transport",
-                "img" => ""
+                "img" => "",
+                "order" => 6
             ),
             "6" => array(
                 "name"=>"Flyer",
-                "img" => ""
+                "img" => "",
+                "order" => 7
             ),
             "7" => array(
                 "name"=>"Fortification",
-                "img" => ""
+                "img" => "",
+                "order" => 8
             ),
             "8" => array(
                 "name"=>"Lord of war",
-                "img" => ""
+                "img" => "",
+                "order" => 9
             ),
         );
 
@@ -64,6 +73,7 @@ class LoadSquadTypeData extends AbstractFixture implements OrderedFixtureInterfa
             $squadtype = new SquadType();
             $squadtype->setName($modelData['name']);
             $squadtype->setImage($modelData['img']);
+            $squadtype->setShowOrder($modelData['order']);
 
             $manager->persist($squadtype);
             $manager->flush();

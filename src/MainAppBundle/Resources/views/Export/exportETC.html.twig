@@ -24,9 +24,15 @@
         -------------------------------------------------<br>
         {% trans %}Formation{% endtrans %} : {{ formation.formationModel }}<br>
         {% trans %}Faction{% endtrans %} : {{ formation.faction }}<br>
-
-        getFormationModel
-
+        <br>
+        {% for squad in formation.SquadsEntity %}
+            {{ squad.squadModel.name }} ( {{ squad.TotalPoint }} ) pts<br>
+            <ul>
+            {% for model in squad.ModelsEntity %}
+               {# <li>{{ model.modelTemplate.name }}<br></li>#}
+            {% endfor %}
+            </ul>
+        {% endfor %}
     {% endfor %}
 
     </body>

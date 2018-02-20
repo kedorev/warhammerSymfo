@@ -38,7 +38,7 @@ class PsychicPower
     /**
      * @var int
      *
-     * @ORM\Column(name="range", type="integer", nullable=true)
+     * @ORM\Column(name="power_range", type="integer", nullable=true)
      */
     private $range;
 

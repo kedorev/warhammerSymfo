@@ -31,7 +31,7 @@ class FormationEntityController extends Controller
         {
             $listId = $request->request->get('mainappbundle_formationentity')['listId'];
         }
-        $formationEntity = new Formationentity();
+        $formationEntity = new Formationentity($this->getDoctrine()->getManager());
         $form = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
         $form->add("listId", HiddenType::class, array("mapped"=>false, "data"=>$listId, "label"=>false));
 

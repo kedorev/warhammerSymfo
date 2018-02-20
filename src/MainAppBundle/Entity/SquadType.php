@@ -23,12 +23,17 @@ class SquadType
 
 
     /**
-     * @var int
+     * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $name;
+
+
+    /**
+     * @ORM\Column(type="integer", name="show_order")
+     */
+    private $showOrder;
 
     /**
      * @var string
@@ -189,4 +194,22 @@ class SquadType
     {
         return $this->image;
     }
+
+    /**
+     * @return int
+     */
+    public function getShowOrder(): int
+    {
+        return $this->showOrder;
+    }
+
+    /**
+     * @param int $showOrder
+     */
+    public function setShowOrder(int $showOrder): void
+    {
+        $this->showOrder = $showOrder;
+    }
+
+
 }

@@ -14,7 +14,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MainAppBundle\Entity\PsychicPower;
 
-class LoadPsychicCategoryData extends AbstractFixture implements OrderedFixtureInterface
+class LoadPsychicPowerData extends AbstractFixture implements OrderedFixtureInterface
 
 {
     public function load(ObjectManager $manager)
@@ -24,7 +24,7 @@ class LoadPsychicCategoryData extends AbstractFixture implements OrderedFixtureI
                 'name' => 'Smite',
                 'range' => 18,
                 'description' => "1d3 BM",
-                'category' => 'Smite',
+                'category' => 'Smites',
                 'power' => 5
             ),
         );

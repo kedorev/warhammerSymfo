@@ -50,6 +50,9 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 'abilities' => array(
 
                 ),
+                'psy' => array(
+
+                ),
             ), "1" => array(
                 'Name' => "Fire warrior sha'shui",
                 'Wound' => 1,
@@ -77,6 +80,9 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                     '0' => 'Tau',
                 ),
                 'abilities' => array(
+
+                ),
+                'psy' => array(
 
                 ),
             ),
@@ -110,6 +116,9 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 'abilities' => array(
                     '0' => 'Manta Strike',
                 ),
+                'psy' => array(
+
+                ),
             ),
             "3" => array(
                 'Name' => "Crisis sha'vre",
@@ -142,7 +151,7 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                     '0' => 'Manta Strike',
                 ),
                 'psy' => array(
-                    '0' => 'Manta Strike',
+
                 ),
             ),
             "4" => array(
@@ -176,7 +185,8 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                     '0' => 'Manta Strike',
                 ),
                 'psy' => array(
-                    '0' => 'Manta Strike',
+                    '0' => 'Smites',
+                    '1' => 'Tyranids'
                 ),
             ),
         );

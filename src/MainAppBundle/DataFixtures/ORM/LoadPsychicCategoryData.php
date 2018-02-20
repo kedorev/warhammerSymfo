@@ -20,7 +20,7 @@ class LoadPsychicCategoryData extends AbstractFixture implements OrderedFixtureI
     {
         $psyDatas = array(
             '0' => array(
-                'name' => 'Smite',
+                'name' => 'Smites',
             ),
             '1' => array(
                 'name' => 'Tyranids',
