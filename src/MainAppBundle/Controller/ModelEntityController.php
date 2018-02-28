@@ -8,6 +8,8 @@ use MainAppBundle\Entity\Models;
 use MainAppBundle\Entity\Squad;
 use MainAppBundle\Entity\SquadsEntity;
 use MainAppBundle\Entity\weaponEntity;
+use MainAppBundle\Service\ModelEntityService;
+use MainAppBundle\Service\weaponEntityService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -190,5 +192,22 @@ class ModelEntityController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    /**
+     * @param Request $request
+     *
+     *
+     * @Route("/models/duplicate/{id}", name="modelentity_duplicate")
+     * @Method("GET")
+     */
+    public function duplicate(Request $request, $id)
+    {
+        $model =  $this->getDoctrine()->getRepository('MainAppBundle:ModelEntity')->find($id);
+        //dump($model);
+        $newmodel = $this->container->get('MainAppBundle\Service\ModelEntityService')->duplicate($model);
+        dump($newmodel);
+
     }
 }

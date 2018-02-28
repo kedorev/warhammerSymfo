@@ -185,4 +185,37 @@ class SquadsEntity
     {
         return $this->getSquadModel()->getType()->getId();
     }
+
+
+    public function isFull(): bool
+    {
+        if($this->getSquadModel()->getMax() <= count($this->ModelsEntity ))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+   /* public function duplicate(): SquadsEntity
+    {
+        $newSquad = new self;
+        $newSquad->formation = $this->formation;
+        $newSquad->squadModel = $this->squadModel;
+        foreach ($this->ModelsEntity as $modelEntity)
+        {
+            $newSquad->addModelsEntity($modelEntity->duplicate());
+        }
+
+        return$newSquad;
+    }
+*/
+
+    /**
+     * alias to duplicate
+     *//*
+    public function __clone()
+    {
+        return $this->duplicate();
+    }*/
 }

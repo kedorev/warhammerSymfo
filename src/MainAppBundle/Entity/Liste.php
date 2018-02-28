@@ -57,7 +57,7 @@ class Liste
     private $owner;
 
     /**
-     * @var array
+     * @var
      *
      * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\FormationEntity", mappedBy="list")
      */
@@ -80,7 +80,7 @@ class Liste
      */
     public function __construct()
     {
-        $this->SquadsEntity = new ArrayCollection();
+        $this->formationsListe = new ArrayCollection();
         $this->artefacts = new ArrayCollection();
     }
 
@@ -143,41 +143,6 @@ class Liste
         return $this->owner;
     }
 
-
-
-    /**
-     * Add squadsEntity
-     *
-     * @param \MainAppBundle\Entity\SquadsEntity $squadsEntity
-     *
-     * @return Liste
-     */
-    public function addSquadsEntity(\MainAppBundle\Entity\SquadsEntity $squadsEntity)
-    {
-        $this->SquadsEntity[] = $squadsEntity;
-
-        return $this;
-    }
-
-    /**
-     * Remove squadsEntity
-     *
-     * @param \MainAppBundle\Entity\SquadsEntity $squadsEntity
-     */
-    public function removeSquadsEntity(\MainAppBundle\Entity\SquadsEntity $squadsEntity)
-    {
-        $this->SquadsEntity->removeElement($squadsEntity);
-    }
-
-    /**
-     * Get squadsEntity
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSquadsEntity()
-    {
-        return $this->SquadsEntity;
-    }
 
     /**
      * Set pointsLimit
@@ -297,15 +262,7 @@ class Liste
 
 
 
-    public function getTotalPoint(): int
-    {
-        $point = 0;
-        foreach ( $this->getFormationsListe() as $formationEntity )
-        {
-            $point = $point + $formationEntity->getTotalPoint();
-        }
-        return $point;
-    }
+
 
 
     public function getCommandPoint() :int
@@ -401,4 +358,16 @@ class Liste
         }
         return $faction;
     }
+
+
+    public function getTotalPoint(): int
+    {
+        $point = 0;
+        foreach ( $this->getFormationsListe() as $formationEntity )
+        {
+            $point = $point + $formationEntity->getTotalPoint();
+        }
+        return $point;
+    }
+
 }

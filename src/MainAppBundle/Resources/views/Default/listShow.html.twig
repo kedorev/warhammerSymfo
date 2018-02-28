@@ -61,7 +61,7 @@
                                         <h3 class="">{{ formation.formationModel.name }}</h3>
                                     </div>
                                     <div class="col-md-1">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        <span class="fa fa-close"></span>
                                     </div>
                                 </div>
                                 {% if( formation.isValide == false )%}
@@ -110,8 +110,9 @@
                                                 <div class="card-footer">
 
                                                     <div class="icon pull-right">
-                                                        <div class="editModel" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"><i class="fa fa-cog fa-fw fa-2x" aria-hidden="true"></i></div>
-                                                        <div class="removeModel" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"><i class="fa fa-ban fa-2x" aria-hidden="true"></i></div>
+                                                        <div class="duplicateModel fa fa-clone" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
+                                                        <div class="editModel fa fa-gear" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
+                                                        <div class="removeModel fa fa-ban" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,7 +131,7 @@
                                 </div>
                             {% endfor %}
                             <div class="col-lg-12 col-md-12">
-                                <a class="addSquad" data-listId="{{liste.id}}" data-formationId = "{{ formation.id }}">add squad</a>
+                                <a class="addSquad" data-listId="{{liste.id}}" data-formationId = "{{ formation.id }}">add squad<span class="fa fa-plus-square"></span></a>
                             </div>
                         </div>
                     </div>
@@ -140,7 +141,8 @@
                 <div>
                     <div class="panel panel-default">
                         <div id="addFormation" class="panel-heading addFormation" data-listid="{{liste.id}}">
-                            Add formation <span class="glyphicon glyphicon-plus glyphiconBigger"></span>
+                            <span class="fa fa-plus">
+                            Add formation </span>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ cache:
     - $HOME/.composer/cache/files
 
 php:
-  - 7.1
+  - 7.2
 
 
 # Update composer
@@ -23,6 +23,7 @@ before-install:
 
 # Install composer dependencies,
 # Create database, schema and fixtures
+#docker-compose up ?
 install:
   - composer dumpautoload
   - composer install

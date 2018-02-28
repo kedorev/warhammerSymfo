@@ -313,4 +313,6 @@ class ProfilEntity
     {
         return $this->attack;
     }
+
+
 }
