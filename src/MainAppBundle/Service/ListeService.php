@@ -10,6 +10,7 @@ namespace MainAppBundle\Service;
 
 
 use MainAppBundle\Entity\Liste;
+use MainAppBundle\Entity\SquadType;
 
 class ListeService
 {

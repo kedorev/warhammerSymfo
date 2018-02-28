@@ -40,6 +40,11 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
+    globals:
+      listeService: '@MainAppBundle\Service\ListeService'
+      modelEntityService: '@MainAppBundle\Service\ModelEntityService'
+      squadEntityService: '@MainAppBundle\Service\SquadEntityService'
+
 
 # Doctrine Configuration
 doctrine:

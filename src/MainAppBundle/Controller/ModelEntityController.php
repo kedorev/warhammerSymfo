@@ -199,15 +199,20 @@ class ModelEntityController extends Controller
      * @param Request $request
      *
      *
-     * @Route("/models/duplicate/{id}", name="modelentity_duplicate")
-     * @Method("GET")
+     * @Route("/models/duplicate", name="modelentity_duplicate")
+     * @Method("POST")
      */
-    public function duplicate(Request $request, $id)
+    public function duplicate(Request $request)
     {
-        $model =  $this->getDoctrine()->getRepository('MainAppBundle:ModelEntity')->find($id);
+
+        $modelId = $request->get('model_id');
+        $listId = $request->get('list_id');
+        $model =  $this->getDoctrine()->getRepository('MainAppBundle:ModelEntity')->find($modelId);
         //dump($model);
         $newmodel = $this->container->get('MainAppBundle\Service\ModelEntityService')->duplicate($model);
-        dump($newmodel);
+
+
+        return $this->redirectToRoute('main_app_listShow',  array('id' => $listId));
 
     }
 }

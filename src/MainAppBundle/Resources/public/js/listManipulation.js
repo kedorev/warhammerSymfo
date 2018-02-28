@@ -158,6 +158,17 @@ jQuery(document).ready(function($)
     });
 
 
+    $(document).on('click', '.duplicateModel', function()
+    {
+        var form = $('<form action="' + $(this).attr("data-URL") + '" method="post">' +
+            '<input type="number" name="model_id" value="' + $(this).attr("data-modelid") + '" />' +
+            '<input type="number" name="list_id" value="' + $(this).attr("data-listId") + '" />' +
+            '</form>');
+        $('body').append(form);
+        form.submit();
+    });
+
+
 
 });
 
