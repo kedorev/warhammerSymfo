@@ -1,1 +1,0 @@
-php -d memory_limit=-1 xxx : permet a php d'utiliser l'integralité de la mémoire pour l'execution du script xxx

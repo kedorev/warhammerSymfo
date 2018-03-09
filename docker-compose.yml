@@ -1,0 +1,49 @@
+version: '2'
+services:
+  nginx:
+     build:
+      dockerfile: Dockerfile
+      context: Dockerfile/nginx
+     ports:
+         - 80:80
+     volumes_from:
+         - php
+     volumes:
+         - ./logs/nginx/:/var/log/nginx
+
+
+  php:
+    image: php:7.2-fpm
+    volumes:
+        - ./Symfony:/var/www/symfony
+        - ./logs/symfony:/var/www/symfony/app/logs
+
+  db:
+    image: mysql:5.7.21
+    ports:
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: symfony
+        MYSQL_PASSWORD: symfony
+
+#  elk:
+#    image: willdurand/elk
+#    ports:
+#        - 81:80
+#    volumes:
+#        - ./elk/logstash:/etc/logstash
+#        - ./elk/logstash/patterns:/opt/logstash/patterns
+#    volumes_from:
+#        - php
+#        - nginx
+
+  composer:
+    image: composer:1.6.3
+    working_dir: /var/www/symfony/
+    restart: 'no'
+    command: install
+    volumes_from:
+      - php
+
