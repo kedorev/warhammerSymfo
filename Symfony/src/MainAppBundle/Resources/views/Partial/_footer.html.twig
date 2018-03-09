@@ -1,0 +1,41 @@
+
+{% block javascripts %}
+    <div class="container text-center">
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-md-6">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{{ path('main_app_aboutus') }}">About us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="{{ path('main_app_contact') }}">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-pills nav-justified">
+                    <li>2017 kedorev</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% javascripts
+        '@MainAppBundle/Resources/public/js/jquery-3.2.1.min.js'
+        '@MainAppBundle/Resources/public/js/bootstrap.min.js'
+        '@MainAppBundle/Resources/public/js/listManipulation.js'
+    %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+        <script src="{{ asset_url }}"></script>
+    {%  endjavascripts %}
+{% endblock %}
