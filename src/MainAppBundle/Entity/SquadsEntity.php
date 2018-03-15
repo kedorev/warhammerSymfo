@@ -43,7 +43,7 @@ class SquadsEntity
     /**
      * @var array
      *
-     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\ModelEntity", mappedBy="squadEntity")
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\ModelEntity", mappedBy="squadEntity" ,cascade={"persist", "remove"})
      */
     private $ModelsEntity;
 

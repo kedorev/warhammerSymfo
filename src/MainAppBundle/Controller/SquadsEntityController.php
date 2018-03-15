@@ -184,11 +184,6 @@ class SquadsEntityController extends Controller
      * @param Request $request
      * @Route("/squadEntity/clone", name="squadentity_clone", options={"expose"=true})
      * @Method("POST")
-     *
-     * Code Return :
-     *  - 6001 : no list id provided
-     *  - 6002 : no squad id provided
-     *      - 6020 : squad not found
      */
     public function duplicateAction(Request $request)
     {
@@ -205,13 +200,41 @@ class SquadsEntityController extends Controller
         }
         else
         {
-            dump($listId);
-            dump($squadId);
             $em = $this->getDoctrine()->getManager();
             $squadTemplate = $em->getRepository(SquadsEntity::class)->findOneById($squadId);
 
-            dump($this->container->get('MainAppBundle\Service\SquadEntityService')->duplicate($squadTemplate));
+            $this->container->get('MainAppBundle\Service\SquadEntityService')->duplicate($squadTemplate);
         }
         return $this->redirectToRoute('main_app_listShow',  array('id' => $listId));
     }
+
+    /**
+     * @param Request $request
+     * @Route("/squadEntity/remove", name="squadentity_remove", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function removeAction(Request $request)
+    {
+        $listId = $request->get('list_id');
+        $squadId = $request->get('squad_id');
+
+        if(!(isset($listId)) || $listId == "")
+        {
+            echo "6001";
+        }
+        else if(!(isset($squadId)) || $squadId == "")
+        {
+            echo "6002";
+        }
+        else
+        {
+            $em = $this->getDoctrine()->getManager();
+            $squad = $em->getRepository(SquadsEntity::class)->findOneById($squadId);
+            $em->remove($squad);
+            $em->flush();
+        }
+        return $this->redirectToRoute('main_app_listShow',  array('id' => $listId));
+    }
+
+
 }

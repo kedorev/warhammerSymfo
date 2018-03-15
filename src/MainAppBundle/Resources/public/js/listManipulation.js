@@ -180,6 +180,16 @@ jQuery(document).ready(function($)
     });
 
 
+    $(document).on('click', '.removeSquad', function()
+    {
+        var form = $('<form action="' +  Routing.generate('squadentity_remove',"",true ) + '" method="post">' +
+            '<input type="number" name="squad_id" value="' + $(this).attr("data-squadid") + '" />' +
+            '<input type="number" name="list_id" value="' + $(this).attr("data-listid") + '" />' +
+            '</form>');
+        $('body').append(form);
+        form.submit();
+    });
+
 
 });
 

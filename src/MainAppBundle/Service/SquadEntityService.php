@@ -38,7 +38,6 @@ class SquadEntityService extends baseService
         $newSquad->setSquadModel($squadsEntity->getSquadModel());
         foreach ($squadsEntity->getModelsEntity() as $modelEntity)
         {
-            dump($newSquad);
             $newSquad->addModelsEntity($this->modelEntityService->duplicate($modelEntity, $newSquad));
         }
 
