@@ -16,6 +16,14 @@ class FormationEntityService extends baseService
 {
     public function getSquadByType(SquadType $type, FormationEntity $formationEntity)
     {
-
+        $result = array();
+        foreach ($formationEntity->getSquadsEntity() as $squadEntity)
+        {
+            if($squadEntity->getSquadModel()->getType() == $type)
+            {
+                array_push($result, $squadEntity);
+            }
+        }
+        return $result;
     }
 }

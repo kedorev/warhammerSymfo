@@ -4,7 +4,7 @@
     {% if liste == null %}
         La liste demandee n'existe pas.
     {% else %}
-
+        {% set squadTypeArray = SquadTypeService.getAllOrderByShowOrder() %}
         <div class="container_flex">
             <div class="item_flex_column">
                 <div class="col-sm-10">
@@ -44,14 +44,12 @@
             </div>
         </div>
 
-{#
-        {{ dump(liste) }}#}
-
 
         <div class="panel-group" id="accordion">
             {% set formationNum = 1 %}
             {% for formation in liste.formationsListe %}
-            {#{{ dump(formation) }}#}
+
+
                 <div class="panel panel-default">
                     <div class="panel-heading collapse-focus" data-focus="{{ formationNum }}">
                         <span class="panel-title ">
@@ -77,59 +75,68 @@
                                     </div>
                                 </div>
                             </a>
-                            {#<span id="resizeF{{formationNum}}" class="glyphicon glyphicon-resize-full"></span>#}
                         </span>
                     </div>
                     <div id="collapseF{{ formationNum }}" class="panel-collapse collapse in" style="display: none;">
                         <div class="panel-body row">
-                            {% for squadEntity in formation.SquadsEntity %}
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="flex-one-row collapseRow" data-row="collapseS{{ squadEntity.id }}">
-                                        <span class="modelName">{{ squadEntity.squadModel.name }}</span> {{ squadEntity.totalPoint }} pts
-                                    </div>
-                                    <div id="collapseS{{ squadEntity.id }}" style="display: none;">
-                                        <div class="card-container">
-                                        {% for models in squadEntity.ModelsEntity %}
+                            <ul class="list-group">
+                            {% for squadType in squadTypeArray %}
+                                {% set squadListByType = FormationEntityService.getSquadByType(squadType, formation) %}
+                                <li class="list-group-item list-group-item-secondary">
+                                    <img src="{{ asset( squadType.Image) }}" width="17px" height="20px">{{ squadType.name }}
+                                </li>
+                                <li class="list-group-item list-group-item-light">
+                                {% for squadEntity in squadListByType %}
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="flex-one-row collapseRow" data-row="collapseS{{ squadEntity.id }}">
+                                            <span class="modelName">{{ squadEntity.squadModel.name }}</span> {{ squadEntity.totalPoint }} pts
+                                        </div>
+                                        <div id="collapseS{{ squadEntity.id }}" style="display: none;">
+                                            <div class="card-container">
+                                            {% for models in squadEntity.ModelsEntity %}
 
-                                            <div class="card">
-                                                <div class="card-block">
-                                                        <img class="flex-one-row" src="{{ asset('img/profil.png') }}">
-                                                        {{ models.getModelTemplate.name }}
-                                                        {{ models.totalPoint }} pts
-                                                        <ul>
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                            <img class="flex-one-row" src="{{ asset('img/profil.png') }}">
+                                                            {{ models.getModelTemplate.name }}
+                                                            {{ models.totalPoint }} pts
+                                                            <ul>
 
-                                                            {% for weapon in models.weaponsEntity %}
-                                                                <li>
-                                                                        {{ weapon.weaponModel.name }}
+                                                                {% for weapon in models.weaponsEntity %}
+                                                                    <li>
+                                                                            {{ weapon.weaponModel.name }}
 
-                                                                </li>
-                                                            {% endfor %}
+                                                                    </li>
+                                                                {% endfor %}
 
-                                                        </ul>
-                                                </div>
-                                                <div class="card-footer">
+                                                            </ul>
+                                                    </div>
+                                                    <div class="card-footer">
 
-                                                    <div class="icon pull-right">
-                                                        <div class="duplicateModel fa fa-clone" data-modelid="{{ models.id }}" data-url="{{ path('modelentity_duplicate') }}" data-listid="{{ liste.id }}"></div>
-                                                        <div class="editModel fa fa-gear" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
-                                                        <div class="removeModel fa fa-ban" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
+                                                        <div class="icon pull-right">
+                                                            <div class="duplicateModel fa fa-clone" data-modelid="{{ models.id }}" data-url="{{ path('modelentity_duplicate') }}" data-listid="{{ liste.id }}"></div>
+                                                            <div class="editModel fa fa-gear" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
+                                                            <div class="removeModel fa fa-ban" data-modelid="{{ models.id }}" data-listid="{{ liste.id }}"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                            {% endfor %}
+                                                {% if squadEntity.nbModels < squadEntity.squadModel.max %}
+                                                    {% for j in range (squadEntity.nbModels,squadEntity.squadModel.max -1) %}
+                                                        <div class="card">
+                                                            <a class="addModel list-group-item" data-listId="{{liste.id}}" data-squadId="{{ squadEntity.id }}">
+                                                            <img src="{{ asset('img/add.png') }}"></a>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
                                             </div>
-
-                                        {% endfor %}
-                                            {% if squadEntity.nbModels < squadEntity.squadModel.max %}
-                                                {% for j in range (squadEntity.nbModels,squadEntity.squadModel.max -1) %}
-                                                    <div class="card">
-                                                        <a class="addModel list-group-item" data-listId="{{liste.id}}" data-squadId="{{ squadEntity.id }}">
-                                                        <img src="{{ asset('img/add.png') }}"></a>
-                                                    </div>
-                                                {% endfor %}
-                                            {% endif %}
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
+                                </li>
                             {% endfor %}
+                            </ul>
                             <div class="col-lg-12 col-md-12">
                                 <a class="addSquad" data-listId="{{liste.id}}" data-formationId = "{{ formation.id }}">add squad<span class="fa fa-plus-square"></span></a>
                             </div>

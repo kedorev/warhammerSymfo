@@ -12,17 +12,8 @@ namespace MainAppBundle\Service;
 use MainAppBundle\Entity\Liste;
 use MainAppBundle\Entity\SquadType;
 
-class ListeService
+class ListeService extends baseService
 {
-    /**
-     * @var Liste
-     */
-    private $liste;
-
-    public function __construct(Liste $liste)
-    {
-        $this->liste = $liste;
-    }
 
 
 }

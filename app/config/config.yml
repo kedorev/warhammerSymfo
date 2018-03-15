@@ -44,6 +44,9 @@ twig:
       listeService: '@MainAppBundle\Service\ListeService'
       modelEntityService: '@MainAppBundle\Service\ModelEntityService'
       squadEntityService: '@MainAppBundle\Service\SquadEntityService'
+      SquadTypeService: '@MainAppBundle\Service\SquadTypeService'
+      FormationEntityService: '@MainAppBundle\Service\FormationEntityService'
+
 
 
 # Doctrine Configuration

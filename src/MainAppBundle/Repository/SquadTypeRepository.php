@@ -10,4 +10,10 @@ namespace MainAppBundle\Repository;
  */
 class SquadTypeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllSquadTypeOrderByShow()
+    {
+        $query = $this->createQueryBuilder('s')
+            ->orderBy("s.showOrder");
+        return $query->getQuery()->getResult();
+    }
 }
