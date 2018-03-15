@@ -23,7 +23,7 @@ class weaponEntity
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\ModelEntity", inversedBy="weaponsEntity")
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\ModelEntity", inversedBy="weaponsEntity" ,cascade={"persist"})
      */
     private $modelEntity;
 

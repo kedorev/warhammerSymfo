@@ -46,9 +46,6 @@ class SquadsEntityController extends Controller
 
 
         $formation = $this->getDoctrine()->getManager()->getRepository(FormationEntity::class)->findOneById($idFormation);
-        dump($formation);
-
-        dump($this->getDoctrine()->getManager()->getRepository(Squad::class)->getAllSquadFromFactionWithoutExec( $formation->getFaction()->getId())->getQuery()->getResult());
         $form = $this->createForm('MainAppBundle\Form\SquadsEntityType', $squadsEntity, [
             'faction' => $formation->getFaction()->getId(),
         ]);
@@ -105,13 +102,9 @@ class SquadsEntityController extends Controller
                         $em->persist($weaponEntity);
                     }
                 }
-                dump($modelEntity);
             }
 
         }
-
-            dump($squadsEntity);
-            dump($squadsModelRequirements);
             $em->persist($squadsEntity);
             $em->flush();
 
@@ -185,5 +178,40 @@ class SquadsEntityController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @param Request $request
+     * @Route("/squadEntity/clone", name="squadentity_clone", options={"expose"=true})
+     * @Method("POST")
+     *
+     * Code Return :
+     *  - 6001 : no list id provided
+     *  - 6002 : no squad id provided
+     *      - 6020 : squad not found
+     */
+    public function duplicateAction(Request $request)
+    {
+        $listId = $request->get('list_id');
+        $squadId = $request->get('squad_id');
+
+        if(!(isset($listId)) || $listId == "")
+        {
+            echo "6001";
+        }
+        else if(!(isset($squadId)) || $squadId == "")
+        {
+            echo "6002";
+        }
+        else
+        {
+            dump($listId);
+            dump($squadId);
+            $em = $this->getDoctrine()->getManager();
+            $squadTemplate = $em->getRepository(SquadsEntity::class)->findOneById($squadId);
+
+            dump($this->container->get('MainAppBundle\Service\SquadEntityService')->duplicate($squadTemplate));
+        }
+        return $this->redirectToRoute('main_app_listShow',  array('id' => $listId));
     }
 }

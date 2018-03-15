@@ -35,20 +35,20 @@ class ModelEntity
     /**
      * @var SquadsEntity
      *
-     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SquadsEntity",inversedBy="ModelsEntity")
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SquadsEntity",inversedBy="ModelsEntity",cascade={"persist"})
      */
     private $squadEntity;
 
     /**
      * @var
-     * @ORM\OneToOne(targetEntity="MainAppBundle\Entity\ProfilEntity")
+     * @ORM\OneToOne(targetEntity="MainAppBundle\Entity\ProfilEntity", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $profilEntity;
 
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\weaponEntity", mappedBy="modelEntity")
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\weaponEntity", mappedBy="modelEntity",cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $weaponsEntity;
 

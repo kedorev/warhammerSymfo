@@ -11,6 +11,8 @@ namespace MainAppBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use MainAppBundle\Entity\ModelEntity;
+use MainAppBundle\Entity\ProfilEntity;
+use MainAppBundle\Entity\SquadsEntity;
 
 class ModelEntityService extends baseService
 {
@@ -32,16 +34,31 @@ class ModelEntityService extends baseService
     }
 
 
-    public function duplicate(ModelEntity $modelEntity): ModelEntity
+    public function duplicate(ModelEntity $modelEntity , SquadsEntity $squadsEntity = null): ModelEntity
     {
-        if($modelEntity->getSquadEntity()->isFull())
+        if($squadsEntity == null)
+        {
+            $squad = $modelEntity->getSquadEntity();
+        }
+        else
+        {
+            $squad = $squadsEntity;
+        }
+
+        if($squad->isFull())
         {
             throw new \LogicException("Can't duplicate model, squad is full");
         }
 
+
         $newModel = new ModelEntity();
         $newModel->setModelTemplate($modelEntity->getModelTemplate());
-        $newModel->setSquadEntity($modelEntity->getSquadEntity());
+        $newModel->setSquadEntity($squad);
+
+        $newProfil = clone $modelEntity->getProfilEntity();
+        $this->em->persist($newProfil);
+        $newModel->setProfilEntity($newProfil);
+
 
         foreach ($modelEntity->getWeaponsEntity() as $weaponEntity)
         {
