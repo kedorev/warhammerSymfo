@@ -128,3 +128,14 @@ textarea:focus, input:focus{
     font-size: 16px;
     font-weight: bold;
 }
+
+.squadLogo
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.fullRow
+{
+    width:100%;
+}

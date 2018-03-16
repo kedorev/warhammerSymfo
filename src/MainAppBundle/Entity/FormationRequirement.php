@@ -162,4 +162,5 @@ class FormationRequirement
         return $this->getFormation().'_'.$this->getSquadType();
     }
 
+
 }

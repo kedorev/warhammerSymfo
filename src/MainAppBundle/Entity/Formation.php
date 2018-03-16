@@ -187,4 +187,17 @@ class Formation
     {
         return $this->commandPoint;
     }
+
+
+    public function getRequirementForOneSquadType(SquadType $squadType)
+    {
+        foreach ($this->formationRequirements as $formationRequirement)
+        {
+            if($formationRequirement->getSquadType() == $squadType)
+            {
+                return $formationRequirement;
+            }
+        }
+        return false;
+    }
 }

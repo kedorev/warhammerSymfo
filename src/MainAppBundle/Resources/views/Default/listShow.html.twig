@@ -67,13 +67,14 @@
                                         <p>Formation non valide</p>
                                     </div>
                                 {% endif %}
-                                <div class="list-group list-group-horizontal">
+
+                                {#<div class="list-group list-group-horizontal">
                                     <div class="d-flex flex-row justify-content-between">
                                     {% for requirement in formation.formationModel.formationRequirements %}
                                         <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
                                     {% endfor %}
                                     </div>
-                                </div>
+                                </div>#}
                             </a>
                         </span>
                     </div>
@@ -83,16 +84,24 @@
                             {% for squadType in squadTypeArray %}
                                 {% set squadListByType = FormationEntityService.getSquadByType(squadType, formation) %}
                                 <li class="list-group-item list-group-item-secondary">
-                                    <img src="{{ asset( squadType.Image) }}" width="17px" height="20px">{{ squadType.name }}
+                                    {% set requirement = formation.formationModel.getRequirementForOneSquadType(squadType) %}
+                                    <img class="squadLogo" src="{{ asset( squadType.Image) }}" width="17px" height="20px">{{ squadType.name }} {% if requirement != false %} {{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }} ) {% endif %}
                                 </li>
-                                <li class="list-group-item list-group-item-light">
+                                <li class="list-group-item list-group-item-light fullRow">
                                 {% for squadEntity in squadListByType %}
                                     <div class="col-lg-12 col-md-12">
-                                        <div class="flex-one-row collapseRow" data-row="collapseS{{ squadEntity.id }}">
-                                            <span class="modelName">{{ squadEntity.squadModel.name }}</span> {{ squadEntity.totalPoint }} pts
-                                            <div>
-                                                <span class="removeSquad fa fa-trash" data-listid="{{ liste.id }}" data-squadid="{{ squadEntity.id }}"></span>
-                                                <span class="duplicateSquad fa fa-copy" data-listid="{{ liste.id }}" data-squadid="{{ squadEntity.id }}"></span>
+                                        <div class="d-inline-flex" >
+                                            <div class="d-inline-flex p-2 collapseRow" data-row="collapseS{{ squadEntity.id }}">
+                                                <span class="modelName">{{ squadEntity.squadModel.name }}</span> {{ " " ~ squadEntity.totalPoint }} pts
+                                            </div >
+                                            <div class="squadLogo">
+                                                <span class="fa fa-expand fa-lg collapseRow" data-row="collapseS{{ squadEntity.id }}"></span>
+                                            </div>
+                                            <div class="squadLogo">
+                                                <span class="removeSquad fa fa-trash fa-lg" data-listid="{{ liste.id }}" data-squadid="{{ squadEntity.id }}"></span>
+                                            </div>
+                                            <div class="squadLogo">
+                                                <span class="duplicateSquad fa fa-copy fa-lg" data-listid="{{ liste.id }}" data-squadid="{{ squadEntity.id }}"></span>
                                             </div>
                                         </div>
                                         <div id="collapseS{{ squadEntity.id }}" style="display: none;">
