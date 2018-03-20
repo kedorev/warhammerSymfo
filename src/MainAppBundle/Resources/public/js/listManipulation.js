@@ -191,6 +191,28 @@ jQuery(document).ready(function($)
     });
 
 
+    /**
+     * Ajax method for update formation
+     */
+    $(document).on('click', '.formationUpdate', function()
+    {
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data : 'formationEntityId=' +  $(this).attr("data-formationid")+'&liste_id=' + $(this).attr("data-listeid"),
+            url: Routing.generate('getFormationFormRoute'),
+        })
+        .done(function(response){
+            $("#modal_body").html(response);
+            $("#myModal").modal();
+            console.log(response);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            console.error('Error : ' + errorThrown);
+        });
+    });
+
+
 });
 
 function validateListData()

@@ -57,6 +57,12 @@ class FormationEntity
      */
     private $faction;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SubFaction")
+     */
+    private $subFaction;
+
 
     /**
      * Get id
@@ -252,5 +258,29 @@ class FormationEntity
     public function getFaction()
     {
         return $this->faction;
+    }
+
+    /**
+     * Set subFaction.
+     *
+     * @param \MainAppBundle\Entity\SubFaction|null $subFaction
+     *
+     * @return FormationEntity
+     */
+    public function setSubFaction(\MainAppBundle\Entity\SubFaction $subFaction = null)
+    {
+        $this->subFaction = $subFaction;
+
+        return $this;
+    }
+
+    /**
+     * Get subFaction.
+     *
+     * @return \MainAppBundle\Entity\SubFaction|null
+     */
+    public function getSubFaction()
+    {
+        return $this->subFaction;
     }
 }

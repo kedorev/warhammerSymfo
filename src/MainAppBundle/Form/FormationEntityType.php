@@ -15,7 +15,8 @@ class FormationEntityType extends AbstractType
     {
         $builder->remove('list')
             ->add('formationModel')
-            ->add("faction");
+            ->add('faction')
+            ->add('subFaction');
     }
     
     /**

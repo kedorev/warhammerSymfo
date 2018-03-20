@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Formationentity controller.
@@ -17,6 +18,44 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FormationEntityController extends Controller
 {
+
+    /**
+     * @Route("ajax_getFormationForm",name="getFormationFormRoute",options={"expose"=true})
+     * @Method({"POST"})
+     */
+    public function getFormAction(Request $request)
+    {
+        $formationId = $request->get('formationEntityId');
+        $listId = $request->get('listeId');
+        $formationEntity = $this->getDoctrine()->getRepository(FormationEntity::class)->findOneById($formationId);
+        $editForm = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
+        $template =$this->renderView('@MainApp/formationentity/editForm.html.twig', array('edit_form' => $editForm->createView(), 'liste_id'=>$listId));
+        $json = json_encode($template);
+        $response = new Response($json, 200);
+        return $response;
+    }
+
+
+
+    /**
+     * @Route("ajax_updateFormation",name="updateFormation",options={"expose"=true})
+     * @Method({"POST"})
+     */
+    public function updateAction(Request $request)
+    {
+        $formationId = $request->get('formationEntityId');
+        $listId = $request->get('listeId');
+        dump($formationId);
+        $formationEntity = $this->getDoctrine()->getRepository(FormationEntity::class)->findOneById($formationId);
+        $editForm = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
+        dump($editForm);
+        $template =$this->renderView('@MainApp/formationentity/editForm.html.twig', array('edit_form' => $editForm->createView(), 'liste_id'=>$listId));
+        $json = json_encode($template);
+        $response = new Response($json, 200);
+        dump($response);
+        return $response;
+    }
+
 
     /**
      * Creates a new formationEntity entity.
@@ -31,7 +70,7 @@ class FormationEntityController extends Controller
         {
             $listId = $request->request->get('mainappbundle_formationentity')['listId'];
         }
-        $formationEntity = new Formationentity($this->getDoctrine()->getManager());
+        $formationEntity = new Formationentity();
         $form = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
         $form->add("listId", HiddenType::class, array("mapped"=>false, "data"=>$listId, "label"=>false));
 

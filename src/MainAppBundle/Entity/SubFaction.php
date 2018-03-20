@@ -164,4 +164,10 @@ class SubFaction
     {
         return $this->artefacts;
     }
+
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
