@@ -47,6 +47,13 @@ class LoadSquadRequirementData extends AbstractFixture implements OrderedFixture
                 'model' => "Fire warrior sha'shui",
                 'squad' => 'Strike team',
             ),
+            "4" => array(
+                'name' => 'neurotrope_into_neurotrope',
+                'min' => '0',
+                'max' => '1',
+                'model' => "Neurotrope",
+                'squad' => 'Neurotrop',
+            ),
         );
 
 

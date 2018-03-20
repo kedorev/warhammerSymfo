@@ -40,6 +40,16 @@ class LoadSquadData extends AbstractFixture implements OrderedFixtureInterface
                 'min' => '5',
                 'max' => '12',
             ),
+            '2' => array(
+                'name' => 'Neurotrop',
+                'type' => 'HQ',
+                'faction' => 'Tyranide',
+                'requirement' => array(
+                    '0' => 'neurotrope_into_neurotrope',
+                ),
+                'min' => '1',
+                'max' => '1',
+            ),
         );
 
 

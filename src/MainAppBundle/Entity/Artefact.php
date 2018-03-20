@@ -3,6 +3,7 @@
 namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artefact
@@ -36,6 +37,11 @@ class Artefact
      * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="artefacts")
      */
     private $faction;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SubFaction", inversedBy="artefacts")
+     */
+    private $subFaction;
 
     /**
      * Get id
@@ -122,4 +128,23 @@ class Artefact
     {
         return $this->faction;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSubFaction()
+    {
+        return $this->subFaction;
+    }
+
+    /**
+     * @param mixed $subFaction
+     */
+    public function setSubFaction($subFaction): void
+    {
+        $this->subFaction = $subFaction;
+    }
+
+
+
 }

@@ -4,12 +4,14 @@ namespace MainAppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Models
  *
  * @ORM\Table(name="models")
  * @ORM\Entity(repositoryClass="MainAppBundle\Repository\ModelsRepository")
+ *
  */
 class Models
 {
@@ -26,6 +28,8 @@ class Models
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
 

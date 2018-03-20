@@ -1,4 +1,22 @@
 services:
+    admin.Abilities:
+        class: MainAppBundle\Admin\AbilitiesAdmin
+        arguments: [~, MainAppBundle\Entity\Abilities, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Abilities }
+        public: true
+    admin.Agreement:
+        class: MainAppBundle\Admin\AgreementAdmin
+        arguments: [~, MainAppBundle\Entity\Agreement, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Agreement }
+        public: true
+    admin.Artefact:
+        class: MainAppBundle\Admin\ArtefactAdmin
+        arguments: [~, MainAppBundle\Entity\Artefact, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Artefact }
+        public: true
     admin.Models:
         class: MainAppBundle\Admin\ModelsAdmin
         arguments: [~, MainAppBundle\Entity\Models, ~]
@@ -17,29 +35,13 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Faction Type }
         public: true
-    admin.Abilities:
-        class: MainAppBundle\Admin\AbilitiesAdmin
-        arguments: [~, MainAppBundle\Entity\Abilities, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Abilities }
-        public: true
-    admin.Artefact:
-        class: MainAppBundle\Admin\ArtefactAdmin
-        arguments: [~, MainAppBundle\Entity\Artefact, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Artefact }
-        public: true
+
+
     admin.Keyword:
         class: MainAppBundle\Admin\KeywordAdmin
         arguments: [~, MainAppBundle\Entity\KeyWord, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: KeyWord }
-        public: true
-    admin.Agreement:
-        class: MainAppBundle\Admin\AgreementAdmin
-        arguments: [~, MainAppBundle\Entity\Agreement, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Agreement }
         public: true
     admin.FormationRequirement:
         class: MainAppBundle\Admin\FormationrequirementAdmin
@@ -70,4 +72,11 @@ services:
         arguments: [~, MainAppBundle\Entity\PsychicPower, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Psychic power }
+        public: true
+
+    admin.SubFaction:
+        class: MainAppBundle\Admin\SubFactionAdmin
+        arguments: [~, MainAppBundle\Entity\SubFaction, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Sub Faction }
         public: true

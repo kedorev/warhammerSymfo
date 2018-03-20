@@ -53,29 +53,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading collapse-focus" data-focus="{{ formationNum }}">
                         <span class="panel-title ">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                <div class="row">
-                                    <div class="col-md-11">
-                                        <h3 class="">{{ formation.formationModel.name }}</h3>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <span class="fa fa-close"></span>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h3 class="">{{ formation.formationModel.name }}</h3>
                                 </div>
-                                {% if( formation.isValide == false )%}
-                                    <div class="alert alert-danger no-padding">
-                                        <p>Formation non valide</p>
-                                    </div>
-                                {% endif %}
-
-                                {#<div class="list-group list-group-horizontal">
-                                    <div class="d-flex flex-row justify-content-between">
-                                    {% for requirement in formation.formationModel.formationRequirements %}
-                                        <span class="list-group-item"><img src="{{ asset( requirement.SquadType.Image) }}" width="17px" height="20px">{{ formation.getNbSquadByType(requirement.SquadType.id) }}( {{ requirement.min }}-{{ requirement.max }})</span>
-                                    {% endfor %}
-                                    </div>
-                                </div>#}
-                            </a>
+                                <div class="col-md-1">
+                                    <span class="fa fa-close"></span>
+                                </div>
+                            </div>
+                            {% if( formation.isValide == false )%}
+                                <div class="alert alert-danger no-padding">
+                                    <p>Formation non valide</p>
+                                </div>
+                            {% endif %}
                         </span>
                     </div>
                     <div id="collapseF{{ formationNum }}" class="panel-collapse collapse in" style="display: none;">

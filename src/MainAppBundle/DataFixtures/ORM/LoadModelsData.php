@@ -176,17 +176,16 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 ),
                 'keyword' => array(
                     '0' => "Vol",
-                    '1' => "Battlesuit",
                 ),
                 'faction' => array(
-                    '0' => 'Tau',
+                    '0' => 'Tyranide',
                 ),
                 'abilities' => array(
                     '0' => 'Manta Strike',
                 ),
                 'psy' => array(
                     '0' => 'Smites',
-                    '1' => 'Tyranids'
+                    '1' => 'Tyranids Psy'
                 ),
             ),
         );

@@ -4,6 +4,7 @@ namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Tests\Model;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * squadRequirement
@@ -38,6 +39,10 @@ class squadRequirement
 
     /**
      * @var int
+     * @Assert\Range(
+     *      min = 1,
+     *      minMessage = "Nice kinding ... ",
+     * )
      *
      * @ORM\Column(name="min", type="integer")
      */

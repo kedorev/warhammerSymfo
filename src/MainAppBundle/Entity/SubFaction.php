@@ -3,6 +3,8 @@
 namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * SubFaction
@@ -27,6 +29,38 @@ class SubFaction
      * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="SubFactions")
      */
     private $faction;
+
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="name", type="string")
+     */
+    private $name;
+
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="rules", type="text")
+     */
+    private $rules;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Artefact", mappedBy="subFaction")
+     */
+    private $artefacts;
+
+
+
+    public function __construct()
+    {
+        $this->artefacts = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -60,5 +94,74 @@ class SubFaction
     public function getFaction()
     {
         return $this->faction;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRules(): ?string
+    {
+        return $this->rules;
+    }
+
+    /**
+     * @param string $rules
+     */
+    public function setRules(string $rules): void
+    {
+        $this->rules = $rules;
+    }
+
+
+    /**
+     * Add artefact.
+     *
+     * @param \MainAppBundle\Entity\Artefact $artefact
+     *
+     * @return SubFaction
+     */
+    public function addArtefact(\MainAppBundle\Entity\Artefact $artefact)
+    {
+        $this->artefacts[] = $artefact;
+
+        return $this;
+    }
+
+    /**
+     * Remove artefact.
+     *
+     * @param \MainAppBundle\Entity\Artefact $artefact
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeArtefact(\MainAppBundle\Entity\Artefact $artefact)
+    {
+        return $this->artefacts->removeElement($artefact);
+    }
+
+    /**
+     * Get artefacts.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArtefacts()
+    {
+        return $this->artefacts;
     }
 }

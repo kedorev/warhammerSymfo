@@ -3,6 +3,7 @@
 namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SquadsEntity
@@ -24,6 +25,7 @@ class SquadsEntity
 
     /**
      * @var FormationEntity
+     * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\FormationEntity",inversedBy="SquadsEntity")
      * @ORM\JoinColumn(name="FormationEntityId")
@@ -33,6 +35,7 @@ class SquadsEntity
     /**
      * @var Squad
      *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Squad", inversedBy="squadEntity")
      * @ORM\JoinColumn(name="squadeModelId")
      */
