@@ -4,6 +4,7 @@ namespace MainAppBundle\Controller;
 
 use MainAppBundle\Entity\FormationEntity;
 use MainAppBundle\Entity\Liste;
+use MainAppBundle\Form\FormationEntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,21 +39,27 @@ class FormationEntityController extends Controller
 
 
     /**
-     * @Route("ajax_updateFormation",name="updateFormation",options={"expose"=true})
+     * @Route("ajax_updateFormation/{id}",name="updateFormationEntity",options={"expose"=true})
      * @Method({"POST"})
      */
-    public function updateAction(Request $request)
+    public function updateAction(Request $request, $id)
     {
-        $formationId = $request->get('formationEntityId');
-        $listId = $request->get('listeId');
-        dump($formationId);
-        $formationEntity = $this->getDoctrine()->getRepository(FormationEntity::class)->findOneById($formationId);
-        $editForm = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
-        dump($editForm);
-        $template =$this->renderView('@MainApp/formationentity/editForm.html.twig', array('edit_form' => $editForm->createView(), 'liste_id'=>$listId));
-        $json = json_encode($template);
-        $response = new Response($json, 200);
-        dump($response);
+        $formationEntity = $this->getDoctrine()->getRepository(FormationEntity::class)->findOneById($id);
+
+        $form = $this->createForm('MainAppBundle\Form\FormationEntityType', $formationEntity);
+
+
+
+        $form->handleRequest($request);
+        dump($form);
+        if ($form->isValid()) {
+
+            dump('valide');
+            $this->getDoctrine()->getManager()->flush();
+            $response = new Response('ok',200);
+        } else {
+            $response = new Response('invalid data in form', 400);
+        }
         return $response;
     }
 
