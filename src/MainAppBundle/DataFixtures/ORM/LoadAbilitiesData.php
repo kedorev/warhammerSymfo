@@ -28,6 +28,14 @@ class LoadAbilitiesData extends AbstractFixture implements OrderedFixtureInterfa
                 'name' => "Manta Strike",
                 'description' => 'placer la figurine a 9"+',
             ),
+            '2' => array(
+                'name' => "Field generator (4+)",
+                'description' => 'has a 4+ invunerable save',
+            ),
+            '3' => array(
+                'name' => "Failure is not an option",
+                'description' => "T'au empire units within 6\" of a friendly ETHEREAL may use the Ethereal's Leadership characteristic without their own"
+            )
 
         );
 

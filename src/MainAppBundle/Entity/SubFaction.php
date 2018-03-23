@@ -54,6 +54,15 @@ class SubFaction
      */
     private $artefacts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Models", mappedBy="subFaction")
+     */
+    private $models;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\Squad", mappedBy="subFaction")
+     */
+    private $squads;
 
 
     public function __construct()
@@ -169,5 +178,77 @@ class SubFaction
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Add model.
+     *
+     * @param \MainAppBundle\Entity\Models $model
+     *
+     * @return SubFaction
+     */
+    public function addModel(\MainAppBundle\Entity\Models $model)
+    {
+        $this->models[] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Remove model.
+     *
+     * @param \MainAppBundle\Entity\Models $model
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeModel(\MainAppBundle\Entity\Models $model)
+    {
+        return $this->models->removeElement($model);
+    }
+
+    /**
+     * Get models.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getModels()
+    {
+        return $this->models;
+    }
+
+    /**
+     * Add squad.
+     *
+     * @param \MainAppBundle\Entity\Squad $squad
+     *
+     * @return SubFaction
+     */
+    public function addSquad(\MainAppBundle\Entity\Squad $squad)
+    {
+        $this->squads[] = $squad;
+
+        return $this;
+    }
+
+    /**
+     * Remove squad.
+     *
+     * @param \MainAppBundle\Entity\Squad $squad
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSquad(\MainAppBundle\Entity\Squad $squad)
+    {
+        return $this->squads->removeElement($squad);
+    }
+
+    /**
+     * Get squads.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSquads()
+    {
+        return $this->squads;
     }
 }

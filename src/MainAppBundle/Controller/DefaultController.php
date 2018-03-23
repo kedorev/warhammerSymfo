@@ -132,6 +132,18 @@ class DefaultController extends Controller
     }
 
     /**
+     *
+     * @Route("/CGU",name="main_app_CGU")
+     * @Method({"GET"})
+     *
+     * @todo : faire la page de contact
+     */
+    public function CGUAction(Request $request)
+    {
+        return $this->render('MainAppBundle:Default:CGU.html.twig', array());
+    }
+
+    /**
      * @Route("faction/lists/{id}",name="main_app_listsFaction")
      *
      * @param Request $request

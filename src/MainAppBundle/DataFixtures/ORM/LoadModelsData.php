@@ -47,6 +47,8 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 'faction' => array(
                     '0' => 'Tau',
                 ),
+                'subfaction' => array(
+                ),
                 'abilities' => array(
 
                 ),
@@ -78,6 +80,8 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 ),
                 'faction' => array(
                     '0' => 'Tau',
+                ),
+                'subfaction' => array(
                 ),
                 'abilities' => array(
 
@@ -113,6 +117,8 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 'faction' => array(
                     '0' => 'Tau',
                 ),
+                'subfaction' => array(
+                ),
                 'abilities' => array(
                     '0' => 'Manta Strike',
                 ),
@@ -147,6 +153,45 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 'faction' => array(
                     '0' => 'Tau',
                 ),
+                'subfaction' => array(
+                ),
+                'abilities' => array(
+                    '0' => 'Manta Strike',
+                ),
+                'psy' => array(
+
+                ),
+            ),
+            "5" => array(
+                'Name' => "Aun'shi",
+                'Wound' => 3,
+                'Point' => 42,
+                'PP' => 4,
+                'psyOwned' => 0,
+                'profil' => array(
+                    '0' => array(
+                        'CC' => 5,
+                        'CT' => 4,
+                        'F' => 5,
+                        'A' => 3,
+                        'M' => 8,
+                        'Toughness' => 5,
+                        'Ld' => 8,
+                        'min' => 1,
+                        'max' => 3,
+                        'Save' => 3,
+                    )
+                ),
+                'keyword' => array(
+                    '0' => "Vol",
+                    '1' => "Battlesuit",
+                ),
+                'faction' => array(
+                    '0' => 'Tau',
+                ),
+                'subfaction' => array(
+                    '0' => 'T\'au sept',
+                ),
                 'abilities' => array(
                     '0' => 'Manta Strike',
                 ),
@@ -179,6 +224,8 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
                 ),
                 'faction' => array(
                     '0' => 'Tyranide',
+                ),
+                'subfaction' => array(
                 ),
                 'abilities' => array(
                     '0' => 'Manta Strike',
@@ -220,6 +267,11 @@ class LoadModelsData extends AbstractFixture implements OrderedFixtureInterface
             foreach($factionKeywords as $faction)
             {
                 $model->addFactionKeyWord($this->getReference($faction));
+            }
+            $subFactionKeywords = $modelData['subfaction'];
+            foreach($subFactionKeywords as $subFaction)
+            {
+                $model->setSubFaction($this->getReference($subFaction));
             }
             $Keywords = $modelData['keyword'];
             foreach($Keywords as $keyword)

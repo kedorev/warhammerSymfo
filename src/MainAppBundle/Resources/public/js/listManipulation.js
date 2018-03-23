@@ -214,29 +214,6 @@ jQuery(document).ready(function($)
     /**
      * Ajax method for update formation
      */
-    /*$(document).on('click', '.updateFormationBtn', function(event)
-    {
-        let jsonString;
-        event.preventDefault();
-        result = {};
-        result.formationId = $('#formationEntityId').attr("data-formationid");
-        result.formationModelId = $('#mainappbundle_formationentity_faction').val();
-        result.factionId = $('#mainappbundle_formationentity_formationModel').val();
-        result.subFactionId = $('#mainappbundle_formationentity_subFaction').val();
-        result.token = $('#mainappbundle_formationentity__token').val();
-        jsonString = JSON.stringify(result);
-        console.log(jsonString);
-        $.ajax({
-            type: "POST",
-            dataType: 'json',
-            data :  {data:jsonString},
-            url: Routing.generate('updateFormationEntity'),
-        })
-        .done(function(response){
-            console.log("work");
-        });
-    });*/
-
     $(document).on('submit', '#form_update_formation', function(e){
     //$('#form_update_formation').submit(function(e) {
         e.preventDefault();

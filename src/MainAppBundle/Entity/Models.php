@@ -76,6 +76,14 @@ class Models
      */
     private $factionKeyWord;
 
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SubFaction", inversedBy="models")
+     */
+    private $subFaction;
+
     /**
      * @var integer
      *
@@ -663,4 +671,28 @@ class Models
         return $this->aggrements;
     }
 
+
+    /**
+     * Set subFaction.
+     *
+     * @param \MainAppBundle\Entity\SubFaction|null $subFaction
+     *
+     * @return Models
+     */
+    public function setSubFaction(\MainAppBundle\Entity\SubFaction $subFaction = null)
+    {
+        $this->subFaction = $subFaction;
+
+        return $this;
+    }
+
+    /**
+     * Get subFaction.
+     *
+     * @return \MainAppBundle\Entity\SubFaction|null
+     */
+    public function getSubFaction()
+    {
+        return $this->subFaction;
+    }
 }

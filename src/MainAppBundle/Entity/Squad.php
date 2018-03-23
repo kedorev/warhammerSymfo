@@ -55,9 +55,15 @@ class Squad
     /**
      * @var faction
      *
-     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="squad")
+     * >@ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="squad")
      */
     private $faction;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\SubFaction", inversedBy="squads")
+     */
+    private $subFaction;
+
 
     /**
      * @var SquadType
@@ -304,5 +310,29 @@ class Squad
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Set subFaction.
+     *
+     * @param \MainAppBundle\Entity\SubFaction|null $subFaction
+     *
+     * @return Squad
+     */
+    public function setSubFaction(\MainAppBundle\Entity\SubFaction $subFaction = null)
+    {
+        $this->subFaction = $subFaction;
+
+        return $this;
+    }
+
+    /**
+     * Get subFaction.
+     *
+     * @return \MainAppBundle\Entity\SubFaction|null
+     */
+    public function getSubFaction()
+    {
+        return $this->subFaction;
     }
 }
