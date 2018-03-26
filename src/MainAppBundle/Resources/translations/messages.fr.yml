@@ -1,4 +1,6 @@
 menu.logout: Déconnexion
 menu.login: Connexion
+menu.my_account: Mon compte
+menu.register: S'enregistrer
 name: nom
 Points limit: Limite de point
