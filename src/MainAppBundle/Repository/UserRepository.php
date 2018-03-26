@@ -10,4 +10,14 @@ namespace MainAppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getNbListsFromUser($userid)
+    {
+        $query = $this->createQueryBuilder('u');
+        $query->select($query->expr()->count('l'))
+            ->join('u.liste',"l")
+            ->where("u.id = :userId")
+            ->setParameter("userId", $userid);
+        return $query;
+    }
 }

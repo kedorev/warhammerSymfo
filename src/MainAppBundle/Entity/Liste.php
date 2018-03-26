@@ -126,10 +126,10 @@ class Liste
      *
      * @return Liste
      */
-    public function setOwner($owner = null)
+    public function setOwner(User $owner = null)
     {
         $this->owner = $owner;
-
+        $owner->addListe($this);
         return $this;
     }
 
@@ -175,7 +175,7 @@ class Liste
      *
      * @return Liste
      */
-    public function addFormationsListe(\MainAppBundle\Entity\FormationEntity $formationsListe)
+    public function addFormationsListe(FormationEntity $formationsListe)
     {
         $this->formationsListe[] = $formationsListe;
 
@@ -187,7 +187,7 @@ class Liste
      *
      * @param \MainAppBundle\Entity\FormationEntity $formationsListe
      */
-    public function removeFormationsListe(\MainAppBundle\Entity\FormationEntity $formationsListe)
+    public function removeFormationsListe(FormationEntity $formationsListe)
     {
         $this->formationsListe->removeElement($formationsListe);
     }

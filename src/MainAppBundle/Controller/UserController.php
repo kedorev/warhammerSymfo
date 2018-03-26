@@ -120,4 +120,43 @@ class UserController extends SecurityController
             'form' => $form->createView(),
         ));
     }
+
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse|Response
+     *
+     * @Route("user/edit",name="mainapp_user_edit")
+     */
+    public function editAction(Request $request)
+    {
+        $usr= $this->getUser();
+        $editForm = $this->createForm('FOS\UserBundle\Form\Type\ProfileFormType', $usr);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('mainapp_user_edit');
+        }
+
+        return $this->render('@MainApp/User/myAccount.html.twig', array(
+            'user' => $usr,
+            'edit_form' => $editForm->createView(),
+
+        ));
+    }
+
+    /**
+     *
+     * @Route("user/ajax_getForm",name="getUserForm",options={"expose"=true})
+     */
+    public function ajax_getEditForm()
+    {
+        $template =$this->renderView('@MainApp/formationentity/editForm.html.twig', array('edit_form' => $editForm->createView(), 'liste_id'=>$listId));
+        $json = json_encode($this->getUser());
+        $response = new Response($json, 200);
+        return $response;
+    }
 }

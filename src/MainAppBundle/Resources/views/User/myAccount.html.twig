@@ -1,0 +1,57 @@
+{% extends "@MainApp/base.html.twig" %}
+
+{% block body %}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active navUser" data-id="information-tab" id="information-tab">{{ 'Information'|trans }}</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link navUser" data-id="edit-tab" id="edit-tab">{{ 'Edit'|trans }}</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link navUser" data-id="collection-tab" id="collection-tab">{{ 'Collection overview'|trans }}</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="userInformation" >
+        {{ dump(user) }}
+        <table class="table">
+            <tr>
+                <td>
+                    {{ 'profile.show.username'|trans }}
+                </td>
+                <td>
+                    {{ user.username }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'profile.show.email'|trans }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="tab-content" id="userEdit" style="display: none ">
+        {{ form_start(edit_form, { 'action': path('mainapp_user_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        {{ form_widget(edit_form) }}
+        <div>
+            <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        </div>
+        {{ form_end(edit_form) }}
+    </div>
+    <div class="tab-content" id="collectionOverview" style="display: none">
+        <table>
+            <tr>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
+
+{% block JS %}
+
+{% endblock %}

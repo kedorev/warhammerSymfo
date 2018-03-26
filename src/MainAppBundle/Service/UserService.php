@@ -8,12 +8,19 @@
 
 namespace MainAppBundle\Service;
 
-class UserService
+use Doctrine\ORM\EntityManagerInterface;
+use MainAppBundle\Entity\User;
+
+class UserService extends baseService
 {
-    private $user;
-
-    public function __construct()
+    public function __construct(EntityManagerInterface $entityManager)
     {
+        parent::__construct($entityManager);
+    }
 
+
+    public function getNbListe($userId)
+    {
+        return $this->em->getRepository(User::class)->getNbListsFromUser($userId);
     }
 }
