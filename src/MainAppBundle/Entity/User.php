@@ -34,6 +34,14 @@ class User extends BaseUser
      */
     private $liste;
 
+
+    /**
+     * @var
+     *
+     * git
+     */
+    private $language;
+
     /**
      * User constructor.
      * @param $liste

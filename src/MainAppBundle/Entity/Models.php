@@ -72,7 +72,7 @@ class Models
     /**
      * @var array(FactionKeyWord)
      *
-     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Faction")
+     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Faction", inversedBy="models")
      */
     private $factionKeyWord;
 

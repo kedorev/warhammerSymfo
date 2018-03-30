@@ -3,6 +3,7 @@
 namespace MainAppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Formation
@@ -28,6 +29,11 @@ class Formation
      */
     private $name;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\FormationLan", mappedBy="faction")
+     */
+    private $traduction;
 
 
     /**
@@ -88,7 +94,8 @@ class Formation
      */
     public function __construct()
     {
-        $this->formationRequirements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formationRequirements = new ArrayCollection();
+        $this->traduction = new ArrayCollection();
     }
 
     /**
@@ -200,4 +207,5 @@ class Formation
         }
         return false;
     }
+
 }

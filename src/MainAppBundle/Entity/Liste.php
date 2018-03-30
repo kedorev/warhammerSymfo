@@ -52,7 +52,7 @@ class Liste
     /**
      * @var user
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="liste")
      */
     private $owner;
 

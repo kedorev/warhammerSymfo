@@ -31,6 +31,14 @@ class FormationAdmin extends AbstractAdmin
                     'multiple' => true,
                 ])
             ->end()
+            ->with('Traduction')
+                ->add('FormationLan', 'sonata_type_model',[
+                    'class' => 'MainAppBundle\Entity\FormationLan',
+                    'property' => 'name',
+                    'multiple' => true,
+
+                ])
+            ->end()
         ;
     }
 

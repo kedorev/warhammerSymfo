@@ -1,6 +1,7 @@
 <?php
 
 namespace MainAppBundle\Repository;
+use MainAppBundle\Entity\Language;
 
 /**
  * FormationRepository
@@ -10,4 +11,8 @@ namespace MainAppBundle\Repository;
  */
 class FormationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getTraduction(Language $lang)
+    {
+
+    }
 }

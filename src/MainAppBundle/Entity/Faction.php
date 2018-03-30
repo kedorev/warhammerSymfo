@@ -45,7 +45,7 @@ class Faction
     /**
      * @var Models
      *
-     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Models")
+     * @ORM\ManyToMany(targetEntity="MainAppBundle\Entity\Models", inversedBy="factionKeyWord")
      */
     private $models;
 

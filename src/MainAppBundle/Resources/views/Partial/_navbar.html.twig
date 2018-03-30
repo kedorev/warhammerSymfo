@@ -2,20 +2,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ path('main_app_index') }}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ path('main_app_index') }}">{{ 'Home'|trans }} <span class="sr-only">(current)</span></a>
             </li>
             <li>
                 <a class="nav-link" href="{{ path('main_app_factions') }}">{{ 'menu.Factions'|trans }}</a>
             </li>
             {# <li><a href="{{ path('main_app_squad') }}">squad</a></li>#}
-            <li class="nav-item"><a class="nav-link" href="{{ path('main_app_list') }}">list create</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ path('showAllList') }}">lists</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('main_app_list') }}">{{ 'list create'|trans }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('showAllList') }}">{{ 'lists'|trans }}</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    {{ 'Collaboration'|trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="https://www.tabletoptournaments.net/fr/index.php">Table top tournament</a>
+                    <a class="dropdown-item" href="https://www.tabletoptournaments.net/fr/index.php">{{ 'Table top tournament'|trans }}</a>
                     <a class="dropdown-item" href="http://feq-40k.webnode.fr/">Association FEQ 40K</a>
                 </div>
             </li>
