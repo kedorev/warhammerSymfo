@@ -1,16 +1,18 @@
-FROM nginx:1.13.9
+FROM alpine:3.6
 
 
+RUN apk add --update nginx
+RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
 ADD nginx.conf /etc/nginx/
 ADD symfony.conf /etc/nginx/conf.d/
+ADD hosts /etc/
 
-RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
+RUN echo "upstream php-upstream { server php:9001; }" > /etc/nginx/conf.d/upstream.conf
 
-RUN groupadd -g 1000 group
-RUN useradd --shell /bin/bash --uid 1000 --gid 1000 -o -c "" -m symfony
-
-
+RUN adduser -D -g '' -G www-data www-data
 
 CMD ["nginx"]
 
+EXPOSE 80
+EXPOSE 443

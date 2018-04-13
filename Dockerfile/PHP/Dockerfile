@@ -1,34 +1,28 @@
 FROM php:7.2-fpm-alpine3.7
 
-
-RUN useradd --shell /bin/bash -u 1024 -o -c "" -m symfony
-RUN chown -R symfony:root /var/www
-
-
-
 RUN apk add --update \
-    php7-apcu \
-    php7-ctype \
-    php7-curl \
-    php7-dom \
-    php7-gd \
-    php7-iconv \
-    php7-imagick \
-    php7-json \
-    php7-intl \
-    php7-mcrypt \
-    php7-mbstring \
-    php7-opcache \
-    php7-openssl \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-mysqli \
-    php7-xml \
-    php7-zlib \
-    php7-phar \
-    php7-tokenizer \
-    php7-session \
-    php7-simplexml \
+    php7.2-apcu \
+    php7.2-ctype \
+    php7.2-curl \
+    php7.2-dom \
+    php7.2-gd \
+    php7.2-iconv \
+    php7.2-imagick \
+    php7.2-json \
+    php7.2-intl \
+    php7.2-mcrypt \
+    php7.2-mbstring \
+    php7.2-opcache \
+    php7.2-openssl \
+    php7.2-pdo \
+    php7.2-pdo_mysql \
+    php7.2-mysqli \
+    php7.2-xml \
+    php7.2-zlib \
+    php7.2-phar \
+    php7.2-tokenizer \
+    php7.2-session \
+    php7.2-simplexml \
     make \
     curl
 

@@ -5,8 +5,9 @@ services:
       dockerfile: Dockerfile
       context: Dockerfile/nginx
      ports:
-         - 80:80
+         - "80:80"
      volumes_from:
+         - db
          - php
      volumes:
          - ./logs/nginx/:/var/log/nginx
@@ -14,6 +15,8 @@ services:
 
   php:
     image: php:7.2-fpm
+    ports:
+        - "9000:9000"
     volumes:
         - ./Symfony:/var/www/symfony
         - ./logs/symfony:/var/www/symfony/app/logs
