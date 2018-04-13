@@ -35,7 +35,7 @@ ADD symfony.ini /etc/php7/cli/conf.d/
 
 ADD symfony.pool.conf /etc/php7/php-fpm.d/
 
-
+ADD chmod 777 -R var/
 
 WORKDIR /var/www/symfony
 EXPOSE 9000
