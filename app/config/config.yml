@@ -47,6 +47,7 @@ twig:
       SquadTypeService: '@MainAppBundle\Service\SquadTypeService'
       FormationEntityService: '@MainAppBundle\Service\FormationEntityService'
       userService: '@MainAppBundle\Service\UserService'
+      formationService: '@MainAppBundle\Service\FormationService'
 
 
 

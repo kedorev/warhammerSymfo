@@ -13,6 +13,10 @@ class FormationRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getTraduction(Language $lang)
     {
-
+        $query = $this->createQueryBuilder('f')
+            ->join("f.traduction", 't')
+            ->where("t.language = :langId")
+            ->setParameter("langId", $lang->getId());
+        return $query;
     }
 }

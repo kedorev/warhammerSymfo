@@ -27,7 +27,11 @@ class Language
      */
     private $label;
 
-
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="MainAppBundle\Entity\User", mappedBy="language")
+     */
+    private $users;
 
     /**
      * Get id.

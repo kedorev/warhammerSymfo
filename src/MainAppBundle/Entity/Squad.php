@@ -55,7 +55,7 @@ class Squad
     /**
      * @var faction
      *
-     * >@ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="squad")
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Faction", inversedBy="squad")
      */
     private $faction;
 

@@ -159,4 +159,11 @@ class UserController extends SecurityController
         $response = new Response($json, 200);
         return $response;
     }
+
+
+    public function changeLanguage()
+    {
+        $user = $this->getUser();
+
+    }
 }

@@ -38,7 +38,7 @@ class User extends BaseUser
     /**
      * @var
      *
-     * git
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\Language", inversedBy="users")
      */
     private $language;
 

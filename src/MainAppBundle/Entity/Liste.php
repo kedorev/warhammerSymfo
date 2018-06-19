@@ -4,7 +4,6 @@ namespace MainAppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\Exception\Exception;
-use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -52,7 +51,7 @@ class Liste
     /**
      * @var user
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="liste")
+     * @ORM\ManyToOne(targetEntity="MainAppBundle\Entity\User", inversedBy="liste")
      */
     private $owner;
 
@@ -126,7 +125,7 @@ class Liste
      *
      * @return Liste
      */
-    public function setOwner(User $owner = null)
+    public function setOwner( \MainAppBundle\Entity\User $owner = null)
     {
         $this->owner = $owner;
         $owner->addListe($this);
@@ -138,7 +137,7 @@ class Liste
      *
      * @return \MainAppBundle\Entity\User
      */
-    public function getOwner(): User
+    public function getOwner():  \MainAppBundle\Entity\User
     {
         return $this->owner;
     }
